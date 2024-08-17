@@ -1,0 +1,11 @@
+{
+  "name": "skill-fusion-frontend",
+  "version": "1.0.0",
+  "description": "sem4 fullstack project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "C3 :: team-2 :: 2024-25",
+  "license": "ISC"
+}
