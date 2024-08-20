@@ -9,3 +9,9 @@ npm run dev
 
 
 ```
+
+
+> [!definition]
+> educator : clients that working with us. from which we take money as commission
+> students : ones who paid educators
+> school : TODO
