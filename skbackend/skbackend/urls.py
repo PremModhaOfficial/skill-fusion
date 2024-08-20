@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.shortcuts import HttpResponse
 
 def entry_point(request):
@@ -24,5 +24,5 @@ def entry_point(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', entry_point,name='home')
+    path('api/', include('api.urls'),)
 ]
