@@ -1,7 +1,8 @@
 from django.db import models
-from django.urls import clear_script_prefix
+from rest_framework import serializers
 
 # Create your models here.
+
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
@@ -12,7 +13,13 @@ class Student(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = "__all__"
 
 
 class Educator(models.Model):
@@ -24,7 +31,8 @@ class Educator(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
+
 
 class Course(models.Model):
     title = models.CharField(max_length=100)
@@ -34,7 +42,14 @@ class Course(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.title}'
+        return f"{self.title}"
+
+
+class CouresSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = "__all__"
+
 
 class Rating(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -42,5 +57,6 @@ class Rating(models.Model):
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return f'{self.rating}'
+        return f"{self.rating}"
