@@ -34,6 +34,12 @@ class Educator(models.Model):
         return f"{self.name}"
 
 
+class EducatorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Educator
+        fields = "__all__"
+
+
 class Course(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
