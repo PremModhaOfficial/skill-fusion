@@ -5,28 +5,32 @@ from .models import CouresSerializer, Course, Student, StudentSerializer
 
 
 @api_view(["GET"])
-def get_student(request):
-    stds = Student.objects.get()
-    seri = StudentSerializer(stds)
-    return Response(seri.data)
+def student(request):
+    if request.method == "GET":
+        students = Student.objects.get()
+        serialized_students = StudentSerializer(students)
+        return Response(serialized_students.data)
 
 
 @api_view(["GET"])
-def get_student_by_pk(request, pk):
-    stds = Student.objects.get(pk=pk)
-    seri = StudentSerializer(stds)
-    return Response(seri.data)
+def student_by_pk(request, pk):
+    if request.method == "GET":
+        student = Student.objects.get(pk=pk)
+        serialized = StudentSerializer(student)
+        return Response(serialized.data)
 
 
 @api_view(["GET"])
-def get_course(request):
-    courses = Course.objects.get()
-    seri_courses = CouresSerializer(courses)
-    return Response(seri_courses.data)
+def course(request):
+    if request.method == "GET":
+        courses = Course.objects.get()
+        seri_courses = CouresSerializer(courses)
+        return Response(seri_courses.data)
 
 
 @api_view(["GET"])
-def get_course_by_pk(request, pk):
-    courses = Course.objects.get(pk=pk)
-    seri_course = CouresSerializer(courses)
-    return Response(seri_course.data)
+def course_by_pk(request, pk):
+    if request.method == "GET":
+        courses = Course.objects.get(pk=pk)
+        seri_course = CouresSerializer(courses)
+        return Response(seri_course.data)
