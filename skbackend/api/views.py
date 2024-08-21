@@ -1,52 +1,14 @@
-from typing import Type, TypeVar
-
-from django.db import models
-from rest_framework import serializers, status
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
-from .models import CouresSerializer, Course, Student, StudentSerializer
-
-django_model = TypeVar("django_model", bound=models.Model)
-django_model_serializer = TypeVar(
-    "django_model_serializer", bound=serializers.ModelSerializer
+from .models import (
+    CouresSerializer,
+    Course,
+    Educator,
+    EducatorSerializer,
+    Student,
+    StudentSerializer,
 )
-
-
-def crud_omnifunc(
-    the_model: Type[django_model],
-    the_model_seri: Type[django_model_serializer],
-    request,
-    pk=None,
-):
-    if request.method == "POST":
-        db_data_ser = the_model_seri(data=request.data, many=True)
-        if db_data_ser.is_valid():
-            db_data_ser.save()
-            return Response(db_data_ser.data, status=201)
-        return Response(db_data_ser.errors, status=400)
-
-    try:
-        if pk:
-            db_data = the_model.objects.get(pk=pk)
-            db_data_ser = the_model_seri(db_data)
-        else:
-            db_data = the_model.objects.all()
-            db_data_ser = the_model_seri(db_data, many=True)
-    except the_model.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == "GET":
-        return Response(db_data_ser.data)
-    elif request.method == "PUT":
-        db_data_ser = the_model_seri(db_data, data=request.data)
-        if db_data_ser.is_valid():
-            db_data_ser.save()
-            return Response(db_data_ser.data)
-        return Response(db_data_ser.errors, status=400)
-    elif request.method == "DELETE":
-        db_data.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+from .myhelpers import crud_omnifunc
 
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
@@ -64,7 +26,7 @@ def student(request):
     #     return Response(serialized.errors, status=400)
 
 
-@api_view(["GET", "POST"])
+@api_view(["GET", "POST", "PUT", "DELETE"])
 def student_by_pk(request, pk):
     return crud_omnifunc(Student, StudentSerializer, request, pk)
     # if request.method == "GET":
@@ -73,7 +35,7 @@ def student_by_pk(request, pk):
     #     return Response(serialized.data)
 
 
-@api_view(["GET", "POST"])
+@api_view(["GET", "POST", "PUT", "DELETE"])
 def course(request):
     return crud_omnifunc(Course, CouresSerializer, request)
     # if request.method == "GET":
@@ -88,7 +50,7 @@ def course(request):
     #     return Response(seri_course.errors, status=400)
 
 
-@api_view(["GET", "POST"])
+@api_view(["GET", "POST", "PUT", "DELETE"])
 def course_by_pk(request, pk):
     return crud_omnifunc(Course, CouresSerializer, request, pk)
     # if request.method == "GET":
@@ -101,3 +63,13 @@ def course_by_pk(request, pk):
     #         seri_course.save()
     #         return Response(seri_course.data, status=201)
     #     return Response(seri_course.errors, status=400)
+
+
+@api_view(["GET", "POST", "PUT", "DELETE"])
+def educator(request):
+    return crud_omnifunc(Educator, EducatorSerializer, request)
+
+
+@api_view(["GET", "POST", "PUT", "DELETE"])
+def educator_by_pk(request, pk):
+    return crud_omnifunc(Educator, EducatorSerializer, request, pk)
