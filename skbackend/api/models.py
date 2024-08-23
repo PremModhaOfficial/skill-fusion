@@ -4,6 +4,7 @@ from rest_framework import serializers
 # Create your models here.
 
 
+# TODO : courses with status and recommendations
 class Student(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
