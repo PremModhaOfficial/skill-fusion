@@ -1,1 +1,8 @@
 server/.env
+skbackend/skbackend/__pycache__
+skbackend/api/__pycache__
+skbackend/skbackend/__pycache__
+skbackend/skbackend/__pycache__
+skbackend/api/migrations/__pycache__
+skfrontend/node_modules
+skbackend/db.sqlite3
