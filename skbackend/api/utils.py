@@ -2,7 +2,8 @@ from api.models import Student
 from django.core.mail import send_mail
 from django.conf import settings
 
-def send_email_to_client():
+@api_view(["GET", "POST", "PUT", "DELETE"])
+def send_email_to_client(request):
   subject = "OTP for Verification Email id"
   OTP = random. randint(1000, 9999)
   
