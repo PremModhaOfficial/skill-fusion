@@ -1,4 +1,7 @@
 from rest_framework.decorators import api_view
+from django.shortcuts import render,redirect
+from .utils import send_email_to_client
+from django.http import HttpResponse
 
 from .models import (
     CouresSerializer,
@@ -73,3 +76,8 @@ def educator(request):
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def educator_by_pk(request, pk):
     return crud_omnifunc(Educator, EducatorSerializer, request, pk)
+
+
+def send_email(request):
+    send_email_to_client()
+    return redirect('/')
