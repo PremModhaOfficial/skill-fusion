@@ -1,13 +1,16 @@
 
 import './App.css'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 // import Login from './components/Login'
+import SignUp from './components/SignUp'
 
 
 function App() {
   return (
     <div>
-      <Footer />
+      {/* <Footer /> */}
+      {/* <Login /> */}
+      <SignUp />
     </div>
   )
 }

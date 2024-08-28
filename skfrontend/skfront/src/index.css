@@ -85,8 +85,6 @@
 }
 
 .login-btn {
-  width: 100px;
-  height: 38px;
   font-weight: bolder;
 }
 
@@ -111,4 +109,24 @@
   .login-page {
     height: auto; /* Allow the container to adjust its height */
   }
+}
+
+/* Styling for signup page */
+.signup-page {
+  background-image: url("./assets/Background1.jpg");
+}
+
+.signup-container {
+  max-width: 800px;
+  width: 100%;
+}
+
+.signup-btn {
+  font-weight: bolder;
+}
+
+.signup-btn:hover {
+  color: blue;
+  background-color: whitesmoke;
+  border: 2px solid blue;
 }

@@ -19,10 +19,10 @@ const Login: React.FC = () => {
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 bg-light p-5">
                         <h1 className="mb-2">LogIn</h1>
-                        <p className="mb-4 login-quote2">Start leafing your career through our multitasking platform</p>
+                        <p className="mb-4 login-quote2">Start leafing your career with our multi-tasking platform</p>
                         <form>
                             <div className="form-group">
-                                <label htmlFor="e-mail">   Enter your e-mail</label>
+                                <label htmlFor="e-mail">Enter your e-mail</label>
                                 <input
                                     type="text"
                                     className="form-control mt-2 border border-2 border-dark"
@@ -30,7 +30,7 @@ const Login: React.FC = () => {
                                     placeholder="abc@gmail.com"
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary login-btn mt-4">
+                            <button type="submit" className="btn btn-primary login-btn mt-4 w-100">
                                 LogIn
                             </button>
                         </form>
