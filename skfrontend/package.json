@@ -8,6 +8,9 @@
   },
   "author": "C3 :: team-2 :: 2024-25",
   "license": "ISC",
+  "prettier": {
+    "tabWidth": 2
+  },
   "dependencies": {
     "axios": "^1.7.4"
   }
