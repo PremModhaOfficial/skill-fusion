@@ -15,3 +15,6 @@ npm run dev
 > educator : clients that working with us. from which we take money as commission
 > students : ones who paid educators
 > school : TODO
+
+
+We Used Django for the api using Django Forest Framework
