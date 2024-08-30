@@ -9,8 +9,8 @@ const Login: React.FC = () => {
     return (
         <div className="page-container">
             <div className="container-fluid vh-50 d-flex align-items-center justify-content-center login-page">
-                <div className="row shadow-lg" style={{ maxWidth: '900px', width: '100%' }}>
-                    <div className="col-lg-6 col-md-6 d-none d-md-block login-bg-img p-0">
+                <div className="row shadow-lg">
+                    <div className="col-lg-6 col-md-6 d-none d-md-block login-bg-img ">
                         <img
                             src={Gif} 
                             alt="Login visual"

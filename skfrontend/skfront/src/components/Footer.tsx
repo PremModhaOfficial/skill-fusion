@@ -70,11 +70,6 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row mt-3">
-                    <div className="col-12 text-center">
-                        <small>Copyright © 2024 Clone Futura Live Solutions Private Ltd</small>
-                    </div>
-                </div>
             </div>
         </footer>
     </div>

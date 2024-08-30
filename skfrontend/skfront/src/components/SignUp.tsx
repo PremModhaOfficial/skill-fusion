@@ -6,7 +6,7 @@ const SignUp: React.FC = () => {
     const Gif = Gif01
 
   return (
-    <div className="signup-page container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div className="signup-page container-fluid min-vh-100 d-flex align-items-center justify-content-center">
       <div className="signup-container card shadow-lg border border-dark border-2">
         <div className="row g-0">
           <div className="col-md-6 d-none d-md-block">
@@ -33,12 +33,15 @@ const SignUp: React.FC = () => {
                   <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="mobile number" placeholder="Mobile Number" />
                 </div>
                 <div className="mb-3">
+                  <input type="checkbox" id="whatsapp number" placeholder="Whatsapp Number" />  Both numbers are same
+                </div>
+                <div className="mb-3">
                   <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="whatsapp number" placeholder="Whatsapp Number" />
                 </div>
                 <div className="mb-3">
                   <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="city" placeholder="City" />
                 </div>
-                <button type="submit" className="btn btn-primary signup-btn w-100">Submit</button>
+                <button type="submit" className="btn btn-primary signup-btn w-100">Sign Up</button>
               </form>
             </div>
           </div>
