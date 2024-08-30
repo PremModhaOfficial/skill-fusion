@@ -78,6 +78,8 @@ def educator_by_pk(request, pk):
     return crud_omnifunc(Educator, EducatorSerializer, request, pk)
 
 
+@api_view(["PUT"])
 def send_email(request):
-    send_email_to_client()
-    return redirect('/')
+    pk = request.data["pk"]
+    send_email_to_client(request,pk=pk)
+    return render(request,template_name='index.html')
