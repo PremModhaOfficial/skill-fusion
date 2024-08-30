@@ -17,4 +17,4 @@ npm run dev
 > school : TODO
 
 
-We Used Django for the api using Django Forest Framework
+We Used Django Forest Framework for the api 
