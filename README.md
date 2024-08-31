@@ -1,13 +1,10 @@
 # skill-fusion
 sem-4 full-stack project 
 
-```sh 
-
+```sh
 cd skfrontend/skfront
 npm install
 npm run dev
-
-
 ```
 
 
@@ -18,3 +15,6 @@ npm run dev
 
 
 We Used Django Forest Framework for the api 
+
+
+
