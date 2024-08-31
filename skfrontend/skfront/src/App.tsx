@@ -8,9 +8,9 @@ import ContactUs from './components/ContactUs'
 function App() {
   return (
     <div>
-      <ContactUs />
+      {/* <ContactUs /> */}
       {/* <Footer /> */}
-      {/* <Login /> */}
+      <Login />
       {/* <SignUp /> */}
     </div>
   )
