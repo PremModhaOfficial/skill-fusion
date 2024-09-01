@@ -5,14 +5,14 @@ from .views import (
     course_by_pk,
     educator,
     educator_by_pk,
+    send_email,
     student,
     student_by_pk,
-    send_email,
 )
 
 urlpatterns = [
     path("auth", include("rest_framework.urls")),
-    path("email/",send_email,name="send_email"),
+    path("email/", send_email, name="send_email"),
     path("student/", student, name="student"),
     path("student/<int:pk>", student_by_pk, name="student_by_pk"),
     path("course/", course, name="course"),
