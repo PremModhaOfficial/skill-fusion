@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -36,18 +35,15 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": (  # ########
+    "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
-    ),
+    ],
 }
 
-SIMPLE_JWT = (
-    {
-        "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-        "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    },
-)
-
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
 
 # Application definition
 
@@ -58,9 +54,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "api",
     "rest_framework",
     "corsheaders",
-    "api",
 ]
 
 MIDDLEWARE = [
@@ -156,5 +152,5 @@ EMAIL_HOST_USER = "skillfusion8@gmail.com"
 EMAIL_HOST_PASSWORD = "frvc gcmz muap snru"
 
 
-COURSE_ALLOW_ALL_ORIGINS = True
-COURSE_ALLOWS_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
