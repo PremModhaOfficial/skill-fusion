@@ -6,3 +6,5 @@ skbackend/skbackend/__pycache__
 skbackend/api/migrations/__pycache__
 skfrontend/node_modules
 skbackend/db.sqlite3
+skbackend/.envrc
+skbackend/api/migrations

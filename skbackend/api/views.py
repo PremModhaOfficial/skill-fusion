@@ -1,14 +1,11 @@
+from django.shortcuts import render
 from rest_framework.decorators import api_view
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListCreateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from .models import (
-    CouresSerializer,
-    Course,
-    Educator,
-    EducatorSerializer,
-    Student,
-    StudentSerializer,
-)
+from .models import Course, Educator, Student
 from .myhelpers import crud_omnifunc
+from .serializers import CouresSerializer, EducatorSerializer, StudentSerializer
 from .utils import send_email_to_client
 
 
@@ -81,3 +78,38 @@ def send_email(request):
     pk = request.data["pk"]
     send_email_to_client(request, pk=pk)
     return render(request, template_name="index.html")
+
+
+class CreateStudentView(CreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    permission_classes = [AllowAny]
+
+
+class CreateEducatorView(CreateAPIView):
+    queryset = Educator.objects.all()
+    serializer_class = EducatorSerializer
+    permission_classes = [AllowAny]
+
+
+class CourseListCreate(ListCreateAPIView):
+    serializer_class = CouresSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        educator = self.request.educator
+        return Course.objects.all(educator=educator)
+
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(educator=self.request.educator)
+        else:
+            print(serializer.errors)
+
+
+class CourseDelete(DestroyAPIView):
+    serializer_class = CouresSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Course.objects.all(educator=self.request.educator)

@@ -1,50 +1,32 @@
+from django.contrib.auth.models import User
 from django.db import models
-from rest_framework import serializers
 
 # Create your models here.
 
 
 # TODO : courses with status and recommendations
-class Student(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+class Student(User):
     phone = models.CharField(max_length=15)
     address = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"Student :: {self.first_name} {self.last_name}"
 
 
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = "__all__"
-
-
-class Educator(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+class Educator(User):
     phone = models.CharField(max_length=15)
     address = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name}"
-
-
-class EducatorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Educator
-        fields = "__all__"
+        return f"Educator :: {self.first_name} {self.last_name}"
 
 
 class Course(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    educator = models.ForeignKey(Educator, on_delete=models.CASCADE)
+    educator = models.ForeignKey(
+        Educator, on_delete=models.CASCADE, related_name="educator"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -52,18 +34,27 @@ class Course(models.Model):
         return f"{self.title}"
 
 
-class CouresSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = "__all__"
-
-
 class Rating(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE, related_name="ratings"
+    )
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="rating")
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.rating}"
+
+
+class Progress(models.Model):
+    student = models.ForeignKey(
+        Student, on_delete=models.CASCADE, related_name="student"
+    )
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="course")
+    progress = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.progress}%"

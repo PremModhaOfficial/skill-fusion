@@ -1,22 +1,27 @@
 from django.urls import include, path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from .views import (
-    course,
-    course_by_pk,
+    CourseDelete,
+    CourseListCreate,
+    CreateStudentView,
     educator,
     educator_by_pk,
+    send_email,
     student,
     student_by_pk,
-    send_email,
 )
 
 urlpatterns = [
     path("auth", include("rest_framework.urls")),
-    path("email/",send_email,name="send_email"),
+    path("email/", send_email, name="send_email"),
+    path("student/register", CreateStudentView.as_view(), name="student_register"),
+    path("token/", TokenObtainPairView.as_view(), name="get_token"),
+    path("token/refresh", TokenRefreshView.as_view(), name="refresh_token"),
     path("student/", student, name="student"),
     path("student/<int:pk>", student_by_pk, name="student_by_pk"),
-    path("course/", course, name="course"),
-    path("course/<int:pk>", course_by_pk, name="course_by_pk"),
+    path("course/", CourseListCreate.as_view(), name="course"),
+    path("course_delete/<int:pk>", CourseDelete.as_view(), name="course_delete"),
     path("educator/", educator, name="educator"),
     path("educator/<int:pk>", educator_by_pk, name="educator_by_pk"),
 ]
