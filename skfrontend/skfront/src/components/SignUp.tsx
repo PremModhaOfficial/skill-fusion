@@ -6,41 +6,64 @@ const SignUp: React.FC = () => {
     const Gif = Gif01
 
   return (
-    <div className="signup-page container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-light">
-      <div className="signup-container card shadow-lg border border-dark border-2">
-        <div className="row g-0">
-          <div className="col-md-6 d-none d-md-block">
+    <div className="signup-page min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="signup-container bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full">
+        <div className="flex flex-col md:flex-row">
+          <div className="hidden md:block md:w-1/2">
             <img
               src={Gif}
               alt="Registration"
-              className="img-fluid h-100 p-4 object-fit-cover"
+              className="img-fluid object-cover w-full h-full p-4"
             />
           </div>
-          <div className="col-md-6 bg-light">
-            <div className="card-body p-5">
-              <h3 className="card-title mb-4">Welcome to SkillFusion</h3>
-              <form>
-                <div className="mb-3">
-                  <input type="text" className="form-control bg-light text-dark border-dark border-2" id="student name" placeholder="Student's Full Name" />
-                </div>
-                <div className="mb-3">
-                  <input type="email" className="form-control bg-light text-dark border-dark border-2" id="email" placeholder="Email" />
-                </div>
-                <div className="mb-3">
-                  <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="parent name" placeholder="Parent's Name" />
-                </div>
-                <div className="mb-3">
-                  <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="mobile number" placeholder="Mobile Number" />
-                </div>
-                <div className="mb-3">
-                  <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="whatsapp number" placeholder="Whatsapp Number" />
-                </div>
-                <div className="mb-3">
-                  <input type="tel" className="form-control bg-light text-dark border-dark border-2" id="city" placeholder="City" />
-                </div>
-                <button type="submit" className="btn btn-primary signup-btn w-100">Submit</button>
-              </form>
-            </div>
+          <div className="w-full md:w-1/2 p-8">
+            <h3 className="text-3xl font-bold mb-6 text-gray-800 text-center">Welcome to SkillFusion</h3>
+            <form>
+              <div className="space-y-4">
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2 border-black border-2 rounded-md  focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="student_name" 
+                  placeholder="Student's Full Name" 
+                />
+                <input 
+                  type="email" 
+                  className="w-full px-3 py-2 border-2 border-black rounded-md f focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="email" 
+                  placeholder="Email" 
+                />
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2 border-2 border-black rounded-md  focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="parent_name" 
+                  placeholder="Parent's Name" 
+                />
+                <input 
+                  type="tel" 
+                  className="w-full px-3 py-2 border-2 border-black rounded-md  focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="mobile_number" 
+                  placeholder="Mobile Number" 
+                />
+                <input 
+                  type="tel" 
+                  className="w-full px-3 py-2 border-2 border-black rounded-md  focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="whatsapp_number" 
+                  placeholder="WhatsApp Number" 
+                />
+                <input 
+                  type="text" 
+                  className="w-full px-3 py-2 border-2 border-black rounded-md  focus:ring-2 focus:ring-blue-500 leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow" 
+                  id="city" 
+                  placeholder="City" 
+                />
+              </div>
+              <button 
+                type="submit" 
+                className=" w-full py-2 px-4 rounded-md  mt-6 signup-btn"
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>

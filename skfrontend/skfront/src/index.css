@@ -96,11 +96,13 @@
 
 .login-quote2 {
   font-weight: bolder;
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .login-btn {
   font-weight: bolder;
+  background-color: blue;
+  color: white;
 }
 
 .login-btn:hover {
@@ -138,6 +140,8 @@
 
 .signup-btn {
   font-weight: bolder;
+  color: white;
+  background-color: blue;
 }
 
 .signup-btn:hover {
