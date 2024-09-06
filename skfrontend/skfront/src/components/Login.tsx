@@ -29,13 +29,11 @@ const Login: React.FC = () => {
                 type="text"
                 className="appearance-none border-black border-2 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow duration-200"
                 id="e-mail"
-                placeholder="abc@gmail.com"
-              />
+                placeholder="abc@gmail.com"/>
             </div>
             <button
               type="submit"
-              className=" font-bold py-2 px-4 rounded w-full login-btn"
-            >
+              className="font-bold py-2 px-4 rounded w-full login-btn">
               LogIn
             </button>
           </form>

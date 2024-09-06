@@ -4,7 +4,7 @@
 
 
 /* Styling for the footer */
-.footer {
+footer {
   background-color: rgb(63, 54, 54);
   color: white;
   padding: 2rem 0;
@@ -21,7 +21,7 @@
   margin-top: -15px;
 }
 
-.footer h5 {
+ h5 {
   font-size: 1.5rem;
   margin-bottom: 0.8rem;
   font-family:sans-serif
@@ -30,6 +30,7 @@
 .footer ul {
   list-style-type: none;
   padding-left: 0;
+  margin-top: -10px;
 }
 
 .footer ul li {
@@ -50,13 +51,13 @@
 
 .footer-logo {
   width: 300px;
-  margin-top: -50px;
+  background-color: white ;
 }
 
 .social-icons {
   font-size: 2rem;
   justify-self: center;
-  margin-top: -50px;
+  margin-top: -20px;
 }
 
 .social-icons a {
@@ -159,7 +160,7 @@
 }
 
 .contact-info-box{
-  padding-top: 20px ;
+  padding-top: 40px ;
   text-align: center;
 }
 
