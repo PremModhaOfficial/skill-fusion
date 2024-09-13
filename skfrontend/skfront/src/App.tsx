@@ -1,17 +1,11 @@
 import './App.css'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
-import Footer from './components/Footer'
-import ContactUs from './components/ContactUs'
+import UserProfile from './components/UserProfile'
 
 
 function App() {
     return (
         <div>
-            <ContactUs />
-            {/* <Footer /> */}
-            {/* <Login /> */}
-            {/* <SignUp /> */}
+            <UserProfile />
         </div>
     )
 }
