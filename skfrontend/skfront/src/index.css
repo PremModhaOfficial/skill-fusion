@@ -152,9 +152,6 @@ footer {
 }
 
 /* Styling for ContactUs page */
-.contact-page{
-  /* background-color:aquamarine */
-}
 .contact-container{
   margin-top: 100px;
 }
@@ -180,4 +177,8 @@ footer {
   font-size: 11;
 }
 
-/*Styling for Header*/
+/*Styling for UserProfile*/
+.userprofile-page {
+  background-image: url("./assets/Background2.jpg");
+  background-repeat: repeat-y;
+}
