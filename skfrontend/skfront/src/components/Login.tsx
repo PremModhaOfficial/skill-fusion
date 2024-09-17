@@ -1,20 +1,18 @@
 import React from 'react';
-import '../index.css'
-import Gif01 from '../assets/GIF01.gif'
+import '../index.css';
+import Gif01 from '../assets/GIF01.gif';
 
 
 const Login: React.FC = () => {
     const Gif = Gif01;
     
     return (
-        
-
     <div className="page-container min-h-screen flex items-center justify-center bg-gray-100">
       <div className="login-page flex shadow-lg rounded-lg overflow-hidden">
         <div className="hidden md:block w-1/2 login-bg-img">
           <img
             src={Gif}
-            alt="Login visual"
+            alt="Login visual "
             className="object-cover h-full w-full login-image-fluid"
           />
         </div>

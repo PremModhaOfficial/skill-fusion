@@ -8,6 +8,7 @@ function App() {
             {/* <ContactUs /> */}
             {/* <Footer /> */}
             <Login />
+            
             {/* <SignUp /> */}
         </div>
     )
