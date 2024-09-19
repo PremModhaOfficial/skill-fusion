@@ -8,3 +8,4 @@ skfrontend/node_modules
 skbackend/db.sqlite3
 skbackend/.envrc
 skbackend/api/migrations
+skbackend/api/migrations
