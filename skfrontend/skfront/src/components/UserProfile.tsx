@@ -67,7 +67,7 @@ const UserProfile: React.FC = () => {
     console.log("Form data saved:", userInfo);
   };
 
-  const inputClassName = "block w-full h-12 px-4 border-black rounded-md text-white shadow-lg text-lg bg-transparent";
+  const inputClassName = "block w-full h-12 px-4 rounded-md text-white shadow-lg text-lg bg-transparent ";
 
   return (
     <div className="relative min-h-screen">
@@ -133,7 +133,7 @@ const UserProfile: React.FC = () => {
                 name="email"
                 value={userInfo.email}
                 readOnly
-                className={`${inputClassName} text-black`}
+                className={inputClassName}
               />
             </div>
 
