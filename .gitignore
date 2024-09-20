@@ -9,3 +9,4 @@ skbackend/db.sqlite3
 skbackend/.envrc
 skbackend/api/migrations
 skbackend/api/migrations
+skbackend/profile_pics

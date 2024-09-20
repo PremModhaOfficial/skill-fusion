@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.generics import (
@@ -9,7 +10,12 @@ from rest_framework.generics import (
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .models import Course, Educator, Student
-from .serializers import CouresSerializer, EducatorSerializer, StudentSerializer
+from .serializers import (
+    CouresSerializer,
+    EducatorSerializer,
+    StudentSerializer,
+    UserSerializer,
+)
 from .utils import send_email_to_client
 
 
@@ -102,6 +108,17 @@ class CreateEducatorView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
+class CreateUserView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+    def get_serializer(self, *args, **kwargs):
+        # Ensure that context is passed correctly
+        kwargs["context"] = self.get_serializer_context()
+        return super().get_serializer(*args, **kwargs)
+
+
 class CourseListCreate(ListCreateAPIView):
     serializer_class = CouresSerializer
     permission_classes = [IsAuthenticated]
@@ -112,7 +129,7 @@ class CourseListCreate(ListCreateAPIView):
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(educator=self.request.educator)
+            serializer.save(educator=self.request.user)
         else:
             print(serializer.errors)
 
