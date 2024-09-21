@@ -1,14 +1,11 @@
 import React from 'react'
 import './App.css'
-import UserProfile from './components/UserProfile'
-
-
-
+import Educator from './components/Educator'
 
 function App() {
     return (
         <div>
-            <UserProfile />
+            <Educator />
         </div>
     )
 }
