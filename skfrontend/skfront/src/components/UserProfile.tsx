@@ -4,12 +4,11 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface UserInfo {
-  studentName: string;
+  studentName: string; 
   parentName: string;
   email: string;
   mobileNumber: string;
   whatsappNumber: string;
-  instituteName: string;
   city: string;
 }
 
@@ -23,7 +22,6 @@ const UserProfile: React.FC = () => {
     email: "pamoh29856@janfab.com",
     mobileNumber: "7856056904",
     whatsappNumber: "7856056904",
-    instituteName: "ODM Public School",
     city: "Mumbai",
   });
 
@@ -155,18 +153,6 @@ const UserProfile: React.FC = () => {
                 type="tel"
                 name="whatsappNumber"
                 value={userInfo.whatsappNumber}
-                onChange={handleInputChange}
-                className={inputClassName}
-                disabled={!isEditing}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-white mb-1">Institute Name</label>
-              <input
-                type="text"
-                name="instituteName"
-                value={userInfo.instituteName}
                 onChange={handleInputChange}
                 className={inputClassName}
                 disabled={!isEditing}

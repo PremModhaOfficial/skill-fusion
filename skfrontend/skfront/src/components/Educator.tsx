@@ -1,14 +1,18 @@
 import React from 'react';
 import '../index.css';
+import stuTeaImg from '../assets/StuTeaImg.png'
 import companyLogo from '../assets/name.png';
 import sandClock from '../assets/Sandclock.gif'
 import competitivePay from '../assets/Competitivepay.gif'
 import teach from '../assets/Teach.gif'
 
+import Footer from './Footer';
+
 
 
 const Educator: React.FC = () => {
 
+  const stuTeaImage = stuTeaImg
   const companyLogoGif = companyLogo
 
   const teachGif = teach
@@ -21,8 +25,8 @@ const Educator: React.FC = () => {
         <div className="">
           <img src={companyLogoGif} alt="Company Logo" className="h-12 ms-6 bg-black" />
         </div>
-        <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md">
-          Sign in
+        <button className="bg-red-600 text-white px-4 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300">
+          Sign Up!
         </button>
       </header>
 
@@ -42,9 +46,9 @@ const Educator: React.FC = () => {
           </div>
           <div className="lg:w-1/2">
             <img
-              src="{stuTeaImg}"
+              src= {stuTeaImage}
               alt="Student and teacher"
-              className="rounded-lg shadow-lg w-full"
+              className=" w-full h-64 me-6"
             />
           </div>
         </div>
@@ -74,6 +78,7 @@ const Educator: React.FC = () => {
     </div>
   );
 };
+
 
 interface FeatureCardProps {
   imageSrc: string;

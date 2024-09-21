@@ -4,10 +4,8 @@ import Gif01 from '../assets/GIF02.gif';
 
 // Define the shape of our form data
 interface FormData {
-  student_name: string;
+  username: string;
   email: string;
-  parent_name: string;
-  mobile_number: string;
   whatsapp_number: string;
   city: string;
 }
@@ -16,10 +14,8 @@ const SignUp: React.FC = () => {
   const Gif = Gif01;
 
   const [formData, setFormData] = useState<FormData>({
-    student_name: '',
+    username: '',
     email: '',
-    parent_name: '',
-    mobile_number: '',
     whatsapp_number: '',
     city: '',
   });
@@ -99,4 +95,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default SignUp; 
