@@ -182,3 +182,8 @@ footer {
   background-image: url("./assets/Background2.jpg");
   background-repeat: repeat-y;
 }
+
+.eduform-page {
+  background-image: url("./assets/Background3.avif");
+  background-repeat: repeat;
+}
