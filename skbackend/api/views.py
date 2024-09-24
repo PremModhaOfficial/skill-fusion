@@ -11,7 +11,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .models import Course, Educator, Student
 from .serializers import (
-    CouresSerializer,
+    CourseSerializer,
     EducatorSerializer,
     StudentSerializer,
     UserSerializer,
@@ -111,7 +111,7 @@ class CreateEducatorView(CreateAPIView):
 class CreateUserView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get_serializer(self, *args, **kwargs):
         # Ensure that context is passed correctly
@@ -120,7 +120,7 @@ class CreateUserView(CreateAPIView):
 
 
 class CourseListCreate(ListCreateAPIView):
-    serializer_class = CouresSerializer
+    serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -135,7 +135,7 @@ class CourseListCreate(ListCreateAPIView):
 
 
 class CourseDelete(DestroyAPIView):
-    serializer_class = CouresSerializer
+    serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -143,8 +143,13 @@ class CourseDelete(DestroyAPIView):
 
 
 class CourseList(ListAPIView):
-    serializer_class = CouresSerializer
+    serializer_class = CourseSerializer
     permission_classes = [AllowAny]
+    queryset = Course.objects.all()
 
     def get_queryset(self):
-        return Course.objects.all()
+        queryset = super().get_queryset()
+        title = self.request.query_params.get("title", None)
+        if title is not None:
+            queryset = queryset.filter(title__icontains=title)
+        return queryset

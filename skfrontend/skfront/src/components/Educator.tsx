@@ -76,21 +76,21 @@ const Educator: React.FC = () => {
       <div className="container mx-auto px-4 py-8 mt-4">
         <h1 className="text-4xl font-bold text-center mb-8">Our Mission</h1>
         <div className="h-1 w-16 bg-red-600 mx-auto mb-8"></div>
-      
+
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
-            <img 
-              src={stuTeaImage1} 
-              alt="Introduction to OLL" 
+            <img
+              src={stuTeaImage1}
+              alt="Introduction to OLL"
               className="w-full rounded-lg shadow-lg"
             />
           </div>
-        
+
           <div className="w-full md:w-1/2">
             <p className="text-lg font-bold mb-6">
               Our mission is to kindle the flame of teaching by establishing a platform that enables educators from diverse backgrounds to disseminate their expertise and wisdom to learners across the globe. We are firmly convinced that every educator possesses the potential to impact and inspire thousands of lives. Our objective is to furnish them with the necessary tools, resources, and support to effectively impart their knowledge and skills. Through this endeavor, we aim to create a global community where the transfer of learning becomes seamless and accessible, fostering intellectual growth and empowerment for both teachers and students alike.
             </p>
-          
+
             <button className="bg-red-600 text-white font-bold py-3 px-6 rounded-full hover:bg-red-700 transition duration-300">
               Teach with Skill Fusion
             </button>

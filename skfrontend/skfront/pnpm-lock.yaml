@@ -14,6 +14,9 @@ importers:
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      jwt-decode:
+        specifier: ^4.0.0
+        version: 4.0.0
       lucide-react:
         specifier: ^0.441.0
         version: 0.441.0(react@18.3.1)
@@ -32,6 +35,9 @@ importers:
       react-icons:
         specifier: ^5.3.0
         version: 5.3.0(react@18.3.1)
+      react-router-dom:
+        specifier: ^6.26.2
+        version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@eslint/js':
         specifier: ^9.9.0
@@ -325,6 +331,10 @@ packages:
     engines: {node: '>= 12'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
+
+  '@remix-run/router@1.19.2':
+    resolution: {integrity: sha512-baiMx18+IMuD1yyvOGaHM9QrVUPGGG0jC+z+IPHnRJWUAUvaKuWKyE8gjDj2rzv3sz9zOGoRSPgeBVHRhZnBlA==}
+    engines: {node: '>=14.0.0'}
 
   '@restart/hooks@0.4.16':
     resolution: {integrity: sha512-f7aCv7c+nU/3mF7NWLtVVr0Ra80RqsO89hO72r+Y/nvQr5+q0UFGkocElTH6MJApvReVh6JHUFYn2cw1WdHF3w==}
@@ -998,6 +1008,10 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
+  jwt-decode@4.0.0:
+    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
+    engines: {node: '>=18'}
+
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
@@ -1248,6 +1262,19 @@ packages:
     peerDependencies:
       react: ^15.5.x || ^16.x || ^17.x || ^18.x
       react-dom: ^15.5.x || ^16.x || ^17.x || ^18.x
+
+  react-router-dom@6.26.2:
+    resolution: {integrity: sha512-z7YkaEW0Dy35T3/QKPYB1LjMK2R1fxnHO8kWpUMTBdfVzZrWOiY9a7CtN8HqdWtDUWd5FY6Dl8HFsqVwH4uOtQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+
+  react-router@6.26.2:
+    resolution: {integrity: sha512-tvN1iuT03kHgOFnLPfLJ8V95eijteveqdOSk+srqfePtQvqCExB8eHOYnlilbOcyJyKnYkr1vJvf7YqotAJu1A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
 
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
@@ -1670,6 +1697,8 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.12
       react: 18.3.1
+
+  '@remix-run/router@1.19.2': {}
 
   '@restart/hooks@0.4.16(react@18.3.1)':
     dependencies:
@@ -2327,6 +2356,8 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
+  jwt-decode@4.0.0: {}
+
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
@@ -2551,6 +2582,18 @@ snapshots:
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  react-router-dom@6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@remix-run/router': 1.19.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-router: 6.26.2(react@18.3.1)
+
+  react-router@6.26.2(react@18.3.1):
+    dependencies:
+      '@remix-run/router': 1.19.2
+      react: 18.3.1
 
   react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

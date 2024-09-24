@@ -1,6 +1,7 @@
 import React from 'react';
 import '../index.css';
 import Gif01 from '../assets/GIF01.gif';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const Gif = Gif01;
@@ -36,6 +37,8 @@ const Login: React.FC = () => {
                             className="font-bold py-2 px-4 rounded w-full login-btn">
                             LogIn
                         </button>
+                        <hr />
+                        <Link to={"/register"}>Sign Up</Link>
                     </form>
                 </div>
             </div>

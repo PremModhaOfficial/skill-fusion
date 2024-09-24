@@ -29,17 +29,36 @@ class Educator(models.Model):
         return f"Educator: {self.user}"
 
 
+"""
+    {
+        title: "Drone Building",
+        instructor: "Dinesh Sain",
+        rating: 5,
+        numRatings: 2,
+        verified: true,
+        classes: 7,
+        price: 750,
+        image: DB,
+    }
+"""
+
+
 class Course(models.Model):
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     description = models.TextField()
     educator = models.ForeignKey(Educator, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    varified = models.BooleanField(False)
+    price = models.FloatField()
+    image = models.ImageField(upload_to="course_images/", blank=True, null=True)
+    classes = models.IntegerField()
+
     objects = models.Manager()
 
     def __str__(self):
-        return f"Course: {self.name}"
+        return f"Course: {self.title}"
 
 
 class StudentProgress(models.Model):
