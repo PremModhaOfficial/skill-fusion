@@ -99,19 +99,19 @@ def send_email(request):
 class CreateStudentView(CreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class CreateEducatorView(CreateAPIView):
     queryset = Educator.objects.all()
     serializer_class = EducatorSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class CreateUserView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get_serializer(self, *args, **kwargs):
         # Ensure that context is passed correctly

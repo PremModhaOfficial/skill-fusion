@@ -5,9 +5,6 @@ from .models import Course, Educator, Student
 
 
 class UserSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        # Ensure context is handled appropriately
-        super().__init__(*args, **kwargs)
 
     class Meta:
         model = User
