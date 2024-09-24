@@ -1,6 +1,6 @@
 import React from 'react';
 import '../index.css';
-import Gif01 from '../assets/GIF01.gif'; 
+import Gif01 from '../assets/GIF01.gif';
 
 const Login: React.FC = () => {
   const Gif = Gif01;
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
                 type="text"
                 className="appearance-none border-black border-2 rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-shadow duration-200"
                 id="e-mail"
-                placeholder="abc@gmail.com"/>
+                placeholder="abc@gmail.com" />
             </div>
             <button
               type="submit"

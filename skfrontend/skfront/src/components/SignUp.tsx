@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch('YOUR_BACKEND_API_URL', {
         method: 'POST',
