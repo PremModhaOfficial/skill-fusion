@@ -19,7 +19,7 @@ const VerifiedIcon = () => (
   </svg>
 );
 
-const CourseCard = ({ title, verified, image }) => (
+const CourseCard = ({ title, verified, image }: any) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4 sm:p-6">
     <div className="h-40 flex items-center justify-center bg-white">
       <img src={image} alt={title} className="w-full h-full object-contain rounded-sm" />

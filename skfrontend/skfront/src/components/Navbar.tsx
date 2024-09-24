@@ -1,4 +1,3 @@
-import React from 'react';
 import myImage from '../assets/SkillFusion.png';
 import { IoSearch } from "react-icons/io5";
 

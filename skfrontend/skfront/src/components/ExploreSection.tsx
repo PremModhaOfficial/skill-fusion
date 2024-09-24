@@ -1,4 +1,3 @@
-import React from "react";
 import childimg from "../assets/childimg.jpg";
 import study2 from "../assets/study2.jpg";
 import studyimg from "../assets/studyimg.jpg";
@@ -39,9 +38,9 @@ const ExploreSection = () => {
         <div className="flex justify-center space-x-4 md:w-1/2">
           {images.map((src, index) => (
             <div key={index} className="w-1/4 md:w-1/3 aspect-square overflow-hidden rounded-full shadow-lg">
-              <img 
-                src={src} 
-                alt={`Interest ${index + 1}`} 
+              <img
+                src={src}
+                alt={`Interest ${index + 1}`}
                 className="w-full h-full object-cover"
               />
             </div>

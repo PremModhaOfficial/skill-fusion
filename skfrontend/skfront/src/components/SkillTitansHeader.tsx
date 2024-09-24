@@ -1,9 +1,9 @@
-import React from 'react';
 
-const SkillTitansHeader = ({ onClick }) => {
+
+const SkillTitansHeader = ({ onClick }: { onClick: Function }) => {
   return (
-    <a 
-      href="#register" 
+    <a
+      href="#register"
       onClick={(e) => {
         e.preventDefault();
         onClick();
