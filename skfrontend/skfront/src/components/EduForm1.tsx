@@ -9,14 +9,14 @@ const EduForm1 = () => {
       <div className="max-w-5xl mx-auto">
         <form className="bg-white shadow-xl shadow-black rounded-lg p-8">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">Basic Info</h2>
-
+        <span className='text-red-600'>* Fields are required</span>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <label htmlFor="educatorName" className="block text-lg font-medium text-gray-700 mb-2">Educator Name *</label>
+              <label htmlFor="educatorName" className="block text-lg font-medium text-gray-700 mb-2">Educator Name <span className='text-red-600'>*</span></label>
               <input type="text" id="educatorName" name="educatorName" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg" placeholder="Raja" />
             </div>
             <div>
-              <label htmlFor="expertise" className="block text-lg font-medium text-gray-700 mb-2">Your area of expertise *</label>
+              <label htmlFor="expertise" className="block text-lg font-medium text-gray-700 mb-2">Your area of expertise <span className='text-red-600'>*</span></label>
               <select id="expertise" name="expertise" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg">
                 <option value="">Select an option</option>
               </select>
@@ -35,7 +35,7 @@ const EduForm1 = () => {
               <p className="mt-1 text-sm text-gray-500">Email cannot be edited</p>
             </div>
             <div>
-              <label htmlFor="resume" className="block text-lg font-medium text-gray-700 mb-2">Upload Resume *</label>
+              <label htmlFor="resume" className="block text-lg font-medium text-gray-700 mb-2">Upload Resume <span className='text-red-600'>*</span></label>
               <input type="file" id="resume" name="resume" className="mt-1 block w-full h-12 text-lg text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
             </div>
             <div className="flex space-x-4">
@@ -51,11 +51,11 @@ const EduForm1 = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="aadhar" className="block text-lg font-medium text-gray-700 mb-2">Upload Picture with Aadhar *</label>
+              <label htmlFor="aadhar" className="block text-lg font-medium text-gray-700 mb-2">Upload Picture with Aadhar <span className='text-red-600'>*</span></label>
               <input type="file" id="aadhar" name="aadhar" className="mt-1 block w-full h-12 text-lg text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
             </div>
             <div className="relative">
-              <label htmlFor="dateOfBirth" className="block text-lg font-medium text-gray-700 mb-2">Date of Birth *</label>
+              <label htmlFor="dateOfBirth" className="block text-lg font-medium text-gray-700 mb-2">Date of Birth <span className='text-red-600'>*</span></label>
               <input
                 type="date"
                 id="dateOfBirth"
@@ -70,11 +70,11 @@ const EduForm1 = () => {
               <input type="file" id="additionalDocs" name="additionalDocs" multiple className="mt-1 block w-full h-12 text-lg text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-lg file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
             </div>
             <div>
-              <label htmlFor="pincode" className="block text-lg font-medium text-gray-700 mb-2">Pincode *</label>
+              <label htmlFor="pincode" className="block text-lg font-medium text-gray-700 mb-2">Pincode <span className='text-red-600'>*</span></label>
               <input type="text" id="pincode" name="pincode" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg" placeholder="Pincode" />
             </div>
             <div>
-              <label htmlFor="location" className="block text-lg font-medium text-gray-700 mb-2">Location *</label>
+              <label htmlFor="location" className="block text-lg font-medium text-gray-700 mb-2">Location <span className='text-red-600'>*</span></label>
               <input type="text" id="location" name="location" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg" placeholder="Location" />
             </div>
             <div>
@@ -82,7 +82,7 @@ const EduForm1 = () => {
               <input type="url" id="workProfileLink" name="workProfileLink" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg" />
             </div>
             <div>
-              <label htmlFor="teachingExperience" className="block text-lg font-medium text-gray-700 mb-2">Teaching Experience (years) *</label>
+              <label htmlFor="teachingExperience" className="block text-lg font-medium text-gray-700 mb-2">Teaching Experience (years) <span className='text-red-600'>*</span></label>
               <select id="teachingExperience" name="teachingExperience" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg">
                 <option value="">Teaching Experience in Years</option>
                 <option value="0-1">0-1</option>

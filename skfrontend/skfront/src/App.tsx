@@ -1,10 +1,10 @@
 import './App.css'
-import EduForm1 from './components/EduForm1'
+import Educator from './components/Educator'
 
 function App() {
     return (
         <div>
-            <EduForm1 />
+            <Educator />
         </div>
     )
 }
