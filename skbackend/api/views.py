@@ -1,17 +1,28 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from rest_framework.generics import CreateAPIView, DestroyAPIView, ListCreateAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    DestroyAPIView,
+    ListAPIView,
+    ListCreateAPIView,
+)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .models import Course, Educator, Student
-from .myhelpers import crud_omnifunc
-from .serializers import CouresSerializer, EducatorSerializer, StudentSerializer
+from .serializers import (
+    CouresSerializer,
+    EducatorSerializer,
+    StudentSerializer,
+    UserSerializer,
+)
 from .utils import send_email_to_client
 
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def student(request):
-    return crud_omnifunc(Student, StudentSerializer, request)
+    pass
+    # return crud_omnifunc(Student, StudentSerializer, request)
     # if request.method == "GET":
     #     students = Student.objects.get()
     #     serialized_students = StudentSerializer(students)
@@ -26,7 +37,8 @@ def student(request):
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def student_by_pk(request, pk):
-    return crud_omnifunc(Student, StudentSerializer, request, pk)
+    pass
+    # return crud_omnifunc(Student, StudentSerializer, request, pk)
     # if request.method == "GET":
     #     student = Student.objects.get(pk=pk)
     #     serialized = StudentSerializer(student)
@@ -35,7 +47,8 @@ def student_by_pk(request, pk):
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def course(request):
-    return crud_omnifunc(Course, CouresSerializer, request)
+    pass
+    # return crud_omnifunc(Course, CouresSerializer, request)
     # if request.method == "GET":
     #     courses = Course.objects.get()
     #     seri_courses = CouresSerializer(courses)
@@ -50,7 +63,8 @@ def course(request):
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def course_by_pk(request, pk):
-    return crud_omnifunc(Course, CouresSerializer, request, pk)
+    pass
+    # return crud_omnifunc(Course, CouresSerializer, request, pk)
     # if request.method == "GET":
     #     courses = Course.objects.get(pk=pk)
     #     seri_course = CouresSerializer(courses)
@@ -65,12 +79,14 @@ def course_by_pk(request, pk):
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def educator(request):
-    return crud_omnifunc(Educator, EducatorSerializer, request)
+    pass
+    # return crud_omnifunc(Educator, EducatorSerializer, request)
 
 
 @api_view(["GET", "POST", "PUT", "DELETE"])
 def educator_by_pk(request, pk):
-    return crud_omnifunc(Educator, EducatorSerializer, request, pk)
+    pass
+    # return crud_omnifunc(Educator, EducatorSerializer, request, pk)
 
 
 @api_view(["PUT"])
@@ -83,13 +99,24 @@ def send_email(request):
 class CreateStudentView(CreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
 
 class CreateEducatorView(CreateAPIView):
     queryset = Educator.objects.all()
     serializer_class = EducatorSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
+
+
+class CreateUserView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer(self, *args, **kwargs):
+        # Ensure that context is passed correctly
+        kwargs["context"] = self.get_serializer_context()
+        return super().get_serializer(*args, **kwargs)
 
 
 class CourseListCreate(ListCreateAPIView):
@@ -97,12 +124,12 @@ class CourseListCreate(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        educator = self.request.educator
+        educator = self.request.user
         return Course.objects.all(educator=educator)
 
     def perform_create(self, serializer):
         if serializer.is_valid():
-            serializer.save(educator=self.request.educator)
+            serializer.save(educator=self.request.user)
         else:
             print(serializer.errors)
 
@@ -112,4 +139,12 @@ class CourseDelete(DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Course.objects.all(educator=self.request.educator)
+        return Course.objects.all(educator=self.request.user)
+
+
+class CourseList(ListAPIView):
+    serializer_class = CouresSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return Course.objects.all()

@@ -154,3 +154,6 @@ EMAIL_HOST_PASSWORD = "frvc gcmz muap snru"
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+
+
+# DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
