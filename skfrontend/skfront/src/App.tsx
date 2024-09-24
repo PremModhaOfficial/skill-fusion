@@ -1,15 +1,10 @@
 import './App.css'
-import UserProfile from './components/UserProfile'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
-
+import Educator from './components/Educator'
 
 function App() {
     return (
         <div>
-            <UserProfile />
-            <Login />
-            <SignUp />
+            <Educator />
         </div>
     )
 }
