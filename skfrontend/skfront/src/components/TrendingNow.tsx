@@ -59,8 +59,8 @@ const TrendingNow = () => {
             <div className="h-2 w-12 bg-red-700 mb-6 rounded-md"></div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {courses.map((course, index) => (
-                    <CourseCard key={index} {...course} />
+                {courses.map((course) => (
+                    <CourseCard key={course.title} {...course} />
                 ))}
             </div>
 

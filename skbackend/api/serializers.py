@@ -19,9 +19,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User(**validated_data)
-        user.set_password(validated_data["password"])  # Hash the password
-        user.save()
-        return user
+        if self.is_valid():
+            user.set_password(validated_data["password"])  # Hash the password
+            user.save()
+            return user
+        else:
+            return self.errors
 
 
 # class EducatorSerializer(serializers.ModelSerializer):

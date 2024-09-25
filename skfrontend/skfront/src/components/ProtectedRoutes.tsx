@@ -7,7 +7,7 @@ import api from '../api'
 
 
 const ProtectedRoutes = ({ children }: any) => {
-    const [isAuthorized, setIsAuthorized] = useState<Boolean | null>(null)
+    const [isAuthorized, setIsAuthorized] = useState<Boolean>(false)
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN)
@@ -15,7 +15,7 @@ const ProtectedRoutes = ({ children }: any) => {
         useEffect(() => { auth().catch(() => setIsAuthorized(false)) }, [])
 
         try {
-            const res = await api.post("api/token/refresh/", { refresh: refreshToken, })
+            const res = await api.post("/api/token/refresh", { refresh: refreshToken, })
             if (res.status === 200) {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
                 setIsAuthorized(true)
@@ -28,6 +28,7 @@ const ProtectedRoutes = ({ children }: any) => {
         }
 
     }
+    refreshToken()
 
     const auth = async () => {
         const token = localStorage.getItem(ACCESS_TOKEN)
@@ -48,11 +49,11 @@ const ProtectedRoutes = ({ children }: any) => {
         }
     }
 
-    // if (isAuthorized === null) {
-    //     return <div>Loading....</div>
-    // }
+    if (isAuthorized === null) {
+        return <div>Loading....</div>
+    }
 
-    return isAuthorized ? children : <Navigate to="/login" />
+    return isAuthorized ? children : <Navigate to="/" />
 }
 
 export default ProtectedRoutes
