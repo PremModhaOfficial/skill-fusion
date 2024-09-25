@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import api from '../api'
 import Course from '../types/course'
 import Navbar from './Navbar';
-import CourseCard from './CourseCard';
 import TrendingNow from './TrendingNow';
+import ExploreSection from './ExploreSection';
+import SkillCatalog from './SkillCategory';
+import Teachers from './Teachers';
 
 
 function Home() {
@@ -28,10 +30,10 @@ function Home() {
     return (
         <>
             <Navbar setSearch={setSearch} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {courseSearchResults?.map((course) => <CourseCard key={course.id} {...course} />)}
-            </div>
+            <ExploreSection />
             <TrendingNow />
+            <Teachers />
+            <SkillCatalog />
         </>
     );
 }

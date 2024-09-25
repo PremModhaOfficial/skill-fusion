@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from 'react-router-dom';
 import myImage from '../assets/SkillFusion.png';
 import { IoSearch } from "react-icons/io5";
 
@@ -6,8 +7,9 @@ type NavbarProps = {
 }
 const Navbar = ({ setSearch }: NavbarProps) => {
 
+    let navigate = useNavigate();
     return (
-        <nav className="bg-white flex flex-col md:flex-row items-center justify-between px-4 py-2 sticky top-0 z-10">
+        <nav id='#top' className="bg-white flex flex-col md:flex-row items-center justify-between px-4 py-2 sticky top-0 z-10">
 
             {/* Logo, Categories and Search Section */}
             <div className="flex items-center space-x-6">
@@ -63,9 +65,27 @@ const Navbar = ({ setSearch }: NavbarProps) => {
             {/* User Section */}
             <div className="flex items-center space-x-2">
                 <span className="text-sm">I'm a</span>
-                <button className="px-4 py-1 bg-gray-800 text-white rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">School</button>
-                <button className="px-4 py-1 bg-gray-200 text-black rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Educator</button>
-                <button className="px-4 py-1 bg-red-600 text-white rounded-full hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Learner</button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault()
+                        return navigate("/school")
+                    }
+                    }
+                    className="px-4 py-1 bg-gray-800 text-white rounded-full hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">School</button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault()
+                        return navigate("/educator")
+                    }
+                    }
+                    className="px-4 py-1 bg-gray-200 text-black rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Educator</button>
+                <button
+                    onClick={(e) => {
+                        e.preventDefault()
+                        return navigate("/profile")
+                    }
+                    }
+                    className="px-4 py-1 bg-red-600 text-white rounded-full hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Learner</button>
             </div>
         </nav>
     );

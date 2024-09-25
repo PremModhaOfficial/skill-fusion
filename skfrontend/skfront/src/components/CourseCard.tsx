@@ -25,7 +25,7 @@ type CourCardProps = {
 }
 
 const CourseCard = ({ title, instructor, rating, numRatings, verified, classes, price, date, image, bgColor }: CourCardProps) => {
-    const imageUrl = image.startsWith('http') ? image : `${import.meta.env.VITE_API_URL}${image}`;
+    let imageUrl = image;
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-6">
             <div className={`h-40 flex items-center justify-center ${bgColor}`}>
