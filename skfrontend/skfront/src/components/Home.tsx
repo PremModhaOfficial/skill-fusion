@@ -7,6 +7,7 @@ import TrendingNow from './TrendingNow';
 import ExploreSection from './ExploreSection';
 import SkillCatalog from './SkillCategory';
 import Teachers from './Teachers';
+import LatestReleases from './LatestReleases';
 
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
             <TrendingNow />
             <Teachers />
             <SkillCatalog />
+            <LatestReleases />
         </>
     );
 }

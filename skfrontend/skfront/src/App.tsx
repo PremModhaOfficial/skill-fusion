@@ -37,7 +37,6 @@ function App() {
                 <Route path='/school' element={<School />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
-            <LatestReleases />
             <Footer />
         </BrowserRouter>
     )

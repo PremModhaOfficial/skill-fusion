@@ -53,7 +53,7 @@ const ProtectedRoutes = ({ children }: any) => {
         return <div>Loading....</div>
     }
 
-    return isAuthorized ? children : <Navigate to="/" />
+    return isAuthorized ? children : <Navigate to="/login" />
 }
 
 export default ProtectedRoutes

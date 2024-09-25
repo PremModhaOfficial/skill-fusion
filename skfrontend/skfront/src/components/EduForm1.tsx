@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Calendar } from 'lucide-react';
 
 const EduForm1 = () => {
     const [dateOfBirth, setDateOfBirth] = useState('');
