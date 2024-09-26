@@ -12,6 +12,8 @@ import UserProfile from './components/UserProfile'
 import Educator from './components/Educator'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { makeRegiserRequest } from './api'
+import MyCourses from './components/MyCourse'
+import CreateCourse from './components/CreateCourse'
 function Logout() {
     localStorage.clear()
     return <Navigate to="/" />
@@ -31,7 +33,9 @@ function App() {
                 <Route path='/contactus' element={<ContactUs />} />
                 {/* <Route path='/educator' element={<Educator />} /> */}
                 <Route path='/educator' element={<ProtectedRoutes><Educator /></ProtectedRoutes>} />
-                <Route path='/educatorForm' element={<EducatorForm />} />
+                <Route path='/educatorForm' element={<ProtectedRoutes><EducatorForm /></ProtectedRoutes >} />
+                <Route path='/educator/createCourse' element={<ProtectedRoutes><CreateCourse /></ProtectedRoutes >} />
+                <Route path='/educator/dashboard' element={<ProtectedRoutes><MyCourses /></ProtectedRoutes >} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/register' element={<RegisterAndLogout />} />

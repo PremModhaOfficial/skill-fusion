@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 from .models import Course, Educator, Student, User
 from .serializers import (
     CourseSerializer,
-    EducatorSerializer,
+    EducatorCreatorSerializer,
     StudentSerializer,
     UserSerializer,
 )
@@ -33,10 +33,17 @@ class CreateStudentView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
 
-class CreateEducatorView(CreateAPIView):
+class EducatorCreateView(CreateAPIView):
     queryset = Educator.objects.all()
-    serializer_class = EducatorSerializer
+    serializer_class = EducatorCreatorSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.all(user=user)
+
+    def perform_create(self, serializer):
+        serializer.save()  # The user will be set in the serializer's create method
 
 
 class Whoami(APIView):
@@ -44,7 +51,16 @@ class Whoami(APIView):
 
     def get(self, request):
         serializer = UserSerializer(request.user)
-        return Response(serializer.data)
+        res = serializer.data
+        try:
+            if hasattr(request.user, "student"):
+                res["student"] = StudentSerializer(request.user.student).data
+            if hasattr(request.user, "educator"):
+                res["educator"] = EducatorCreatorSerializer(request.user.educator).data
+        except Exception as e:
+            print(e)
+            pass
+        return Response(res)
 
 
 class CreateUserView(CreateAPIView):
@@ -61,8 +77,8 @@ class CourseListCreate(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        educator = self.request.user
-        return Course.objects.all(educator=educator)
+        educator = Educator.objects.get(user=self.request.user)
+        return Course.objects.all().filter(educator=educator)
 
     def perform_create(self, serializer):
         if serializer.is_valid():

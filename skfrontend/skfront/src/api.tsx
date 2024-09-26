@@ -1,6 +1,6 @@
 import axios from "axios"
 import { ACCESS_TOKEN } from "./constants"
-import { registerRequestFields } from "./types/requestTypes"
+import { EducatorFormFields, registerRequestFields } from "./types/requestTypes"
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -19,6 +19,21 @@ api.interceptors.request.use(
         return Promise.reject(error)
     }
 )
+
+let makeProfileRequest = async (fields: EducatorFormFields) => {
+    try {
+        let response = await api.post('/api/educator/', { ...fields })
+        // console.log(response.data)
+
+        return response
+    } catch (error: any) {
+        // console.error(error?.response?.data)
+        alert(error?.response?.data)
+        alert(JSON.stringify(error?.response?.data))
+        return error?.response
+    }
+
+}
 
 
 let makeRegiserRequest = async ({ username, password, email }: registerRequestFields) => {
@@ -40,7 +55,7 @@ const getUserProfile = async () => {
         const response = await api.get('/api/whoami/')
 
         const userData = await response.data
-        console.log(userData?.username);
+        console.log(userData);
         return userData
         // Use userData to populate your profile form
     } catch (error) {
@@ -49,4 +64,4 @@ const getUserProfile = async () => {
 };
 export default api
 
-export { makeRegiserRequest, getUserProfile }
+export { makeRegiserRequest, getUserProfile, makeProfileRequest }

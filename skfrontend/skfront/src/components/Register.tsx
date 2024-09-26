@@ -90,7 +90,7 @@ const Register = ({ handleSubmit }: RegisterProps) => {
                 </div>
 
                 <button type="submit" className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
-                    Log In
+                    Submit
                 </button>
             </form>
         </div>

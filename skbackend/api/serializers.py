@@ -32,19 +32,32 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-# class EducatorSerializer(serializers.ModelSerializer):
-#     user = UserSerializer()
-#
-#     class Meta:
-#         model = Educator
-#         fields = "__all__"
-#
+class EducatorCreatorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Educator
+        fields = [
+            "name",
+            "phone",
+            "date_of_birth",
+            "location",
+            "social_links",
+            "experiance",
+        ]
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        user = self.context["request"].user
+        educator = Educator.objects.create(user=user, **validated_data)
+        return educator
+
+
 class EducatorSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
 
     class Meta:
         model = Educator
-        fields = ["id", "user", "profile_pic"]
+        fields = "__all__"
         extra_kwargs = {"password": {"write_only": True}}
 
 
