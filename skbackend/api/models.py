@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -21,17 +23,11 @@ class Educator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
     name = models.CharField(max_length=255)
-    phonenumber = models.CharField(max_length=13)
-    date_of_birth = models.DateField(
-        null=True,
-        blank=True,
-    )
+    phone = models.CharField(max_length=13)
+    date_of_birth = models.CharField(max_length=10, null=True, blank=True)
     location = models.CharField(max_length=255)
-    social_links = models.TextField()
-    experiance = models.FloatField(choices=[(i + 0.5, i + 0.5) for i in range(10)])
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    social_links = models.TextField(null=True, blank=True)
+    experiance = models.FloatField(choices=[(i + 0.5, i + 0.5) for i in range(11)])
 
     objects = models.Manager()
 
@@ -50,6 +46,10 @@ class Educator(models.Model):
  """
 
 
+def get_image_path(instance, filename):
+    return os.path.join("course_images", str(instance.pk), filename)
+
+
 class Course(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -59,7 +59,7 @@ class Course(models.Model):
 
     varified = models.BooleanField(False)
     price = models.FloatField()
-    image = models.ImageField(upload_to="course_images/", blank=True, null=True)
+    image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     classes = models.IntegerField()
 
     objects = models.Manager()

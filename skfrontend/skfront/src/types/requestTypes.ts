@@ -5,5 +5,17 @@ type registerRequestFields = {
     password: string,
 }
 
+type EducatorFormFields = {
+    adharCard?: any,
+    date_of_birth: string,
+    email: string,
+    experiance: number | string,
+    location: string,
+    name: string,
+    phone: string,
+    profileImage?: any,
+    social_links: string,
+}
 
-export type { registerRequestFields }
+
+export type { registerRequestFields, EducatorFormFields }
