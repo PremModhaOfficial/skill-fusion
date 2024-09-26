@@ -29,18 +29,15 @@ class Educator(models.Model):
         return f"Educator: {self.user}"
 
 
-"""
-    {
-        title: "Drone Building",
-        instructor: "Dinesh Sain",
-        rating: 5,
-        numRatings: 2,
-        verified: true,
-        classes: 7,
-        price: 750,
-        image: DB,
-    }
-"""
+""" title: "Drone Building",
+    instructor: "Dinesh Sain",
+    rating: 5,
+    numRatings: 2,
+    verified: true,
+    classes: 7,
+    price: 750,
+    image: DB,
+ """
 
 
 class Course(models.Model):

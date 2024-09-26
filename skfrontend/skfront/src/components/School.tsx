@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from '../assets/IntroVideo.mp4'
+import Footer from './Footer';
 
 const CollaborationProcess: React.FC = () => {
   const steps = [
@@ -21,7 +22,7 @@ const CollaborationProcess: React.FC = () => {
   ];
 
   return (
-    
+
     <div className="mt-8">
       <h2 className="text-2xl font-bold text-blue-900 text-center mb-6">We work very closely with the Schools</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -49,16 +50,16 @@ const CollaborationProcess: React.FC = () => {
 const School: React.FC = () => {
 
   const video = Video
-  
+
   return (
     <div className="w-full bg-white">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Main content */}
         <div className="flex flex-col md:flex-row">
           {/* Video section */}
           <div className="w-full md:w-1/2 p-4">
-            <video 
+            <video
               src={video}
               className="w-full h-auto rounded-lg"
               controls
@@ -69,7 +70,7 @@ const School: React.FC = () => {
               Your browser does not support the video tag.
             </video>
           </div>
-          
+
           {/* Text content */}
           <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
             <h2 className="text-4xl font-bold mb-6">
@@ -94,10 +95,11 @@ const School: React.FC = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Collaboration Process */}
         <CollaborationProcess />
       </div>
+      <Footer />
     </div>
   );
 };

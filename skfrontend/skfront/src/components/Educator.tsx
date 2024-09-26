@@ -8,6 +8,8 @@ import competitivePay from '../assets/Competitivepay.gif'
 import teach from '../assets/Teach.gif'
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
+
 
 const Educator: React.FC = () => {
     const stuTeaImage = stuTeaImg
@@ -103,6 +105,7 @@ const Educator: React.FC = () => {
             </div>
 
             <FAQSection />
+            <Footer />
         </div>
     );
 };

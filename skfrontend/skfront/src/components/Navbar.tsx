@@ -44,6 +44,7 @@ const Navbar = ({ setSearch }: NavbarProps) => {
                 <form className="w-[180px]"
                     onSubmit={e => {
                         e.preventDefault()
+                        navigate("/search")
                     }}>
                     <div className="relative flex items-center border border-gray-950 rounded-full px-2 py-1 h-8 focus-within:border-white focus-within:shadow-md focus-within:shadow-gray-500">
                         <input

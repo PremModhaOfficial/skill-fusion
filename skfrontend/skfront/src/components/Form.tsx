@@ -17,7 +17,7 @@ function Form({ route, method }: { route: string, method: string }) {
         e.preventDefault();
 
         try {
-            const res = await api.post(route, { username, email, password })
+            const res = await api.post(route, { username, password })
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
@@ -33,34 +33,42 @@ function Form({ route, method }: { route: string, method: string }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-container">
-            <h1>{name}</h1>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4 md:space-y-6 lg:space-y-8 items-center">
+            <h1 className="text-xl font-bold md:text-2xl lg:text-3xl text-center md:text-left lg:text-center">
+                {name}
+            </h1>
             <input
-                className="form-input"
+                className="form-input block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700 md:w-3/4 lg:w-1/2"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
             />
             <input
-                className="form-input"
+                className="form-input block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700 md:w-3/4 lg:w-1/2"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email"
             />
             <input
-                className="form-input"
+                className="form-input block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700 md:w-3/4 lg:w-1/2"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
             {loading && <LoadingIndicator />}
-            <button className="form-button" type="submit">
+            <button
+                className="form-button px-4 py-2 rounded-md bg-blue-500 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 cursor-pointer md:w-1/2 lg:w-1/3"
+                type="submit"
+
+            >
                 {name}
             </button>
         </form>
+
+
     );
 }
 

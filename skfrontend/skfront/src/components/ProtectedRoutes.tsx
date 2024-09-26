@@ -7,7 +7,7 @@ import api from '../api'
 
 
 const ProtectedRoutes = ({ children }: any) => {
-    const [isAuthorized, setIsAuthorized] = useState<Boolean>(false)
+    const [isAuthorized, setIsAuthorized] = useState<Boolean | null>(null)
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN)
@@ -16,7 +16,9 @@ const ProtectedRoutes = ({ children }: any) => {
 
         try {
             const res = await api.post("/api/token/refresh", { refresh: refreshToken, })
+            console.log(res)
             if (res.status === 200) {
+                console.log(res.data.access)
                 localStorage.setItem(ACCESS_TOKEN, res.data.access)
                 setIsAuthorized(true)
             } else {
@@ -53,7 +55,7 @@ const ProtectedRoutes = ({ children }: any) => {
         return <div>Loading....</div>
     }
 
-    return isAuthorized ? children : <Navigate to="/login" />
+    return isAuthorized ? children : <Navigate to="/register" />
 }
 
 export default ProtectedRoutes
