@@ -49,6 +49,18 @@ let makeRegiserRequest = async ({ username, password, email }: registerRequestFi
 
 }
 
+const RedirectIfAlreadyEducator = (toPath: string) => {
+    let responce = getUserProfile()
+    try {
+        return responce.then((js: any) => { return (js.educator !== undefined ? true : false) })
+    } catch (error) {
+        console.log(JSON.stringify(error))
+        return false
+    }
+}
+
+
+
 const getUserProfile = async () => {
 
     try {
@@ -60,8 +72,9 @@ const getUserProfile = async () => {
         // Use userData to populate your profile form
     } catch (error) {
         console.error('Error:', error);
+        return error
     }
 };
 export default api
 
-export { makeRegiserRequest, getUserProfile, makeProfileRequest }
+export { makeRegiserRequest, getUserProfile, makeProfileRequest, RedirectIfAlreadyEducator }

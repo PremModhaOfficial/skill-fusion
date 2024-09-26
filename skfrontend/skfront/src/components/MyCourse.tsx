@@ -3,7 +3,6 @@ import Course from "../types/course";
 import api from "../api";
 import CourseCard from "./CourseCard";
 import Search from "./Search";
-import { Link } from "react-router-dom";
 
 
 
@@ -27,12 +26,13 @@ export default function MyCourses() {
     }, [search]);
 
     return (
-        <>
+        <div className="container-fluid">
             <Search results={courseSearchResults} setSearch={setSearch} />
-            {courseSearchResults?.map((course) => <CourseCard key={course.id} {...course} />)}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {courseSearchResults?.map((course) => <CourseCard key={course.id} {...course} />)}
 
-            <Link to="/educator/createCourse">Create Course</Link>
-        </>
+            </div>
+        </div>
     )
 }
 

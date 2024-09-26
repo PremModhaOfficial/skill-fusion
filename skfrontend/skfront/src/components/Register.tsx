@@ -91,6 +91,21 @@ const Register = ({ handleSubmit }: RegisterProps) => {
                 <button type="submit" className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
                     Submit
                 </button>
+
+                <h3 >
+                    <center>
+                        OR
+                    </center>
+                </h3>
+                <button type="submit"
+                    onClick={e => {
+                        e.preventDefault()
+                        navigate('/login')
+
+                    }}
+                    className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
+                    Login
+                </button>
             </form>
         </div>
     );

@@ -1,4 +1,7 @@
+import { CourseContext } from "@/App";
 import Course from "../types/course";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const StarIcon = ({ filled }: { filled: boolean }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill={filled ? "#FFD700" : "none"} stroke="#FFD700" strokeWidth="2" className="w-4 h-4">
@@ -29,8 +32,19 @@ type CoursCardProps = {
 const CourseCard = ({ title, instructor, rating, numRatings, verified, classes, price, date, image }: CoursCardProps) => {
     let bgColor = "bg-gray-200";
     let imageUrl = image;
+
+    let [course, setCourse] = useContext(CourseContext)
+    let navigate = useNavigate()
+
+    let handelClick = () => {
+        setCourse({ title, instructor, rating, numRatings, verified, classes, price, date, image })
+        navigate('/course-details')
+
+    }
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-6">
+        <div
+            onClick={handelClick}
+            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-6">
             <div className={`h-40 flex items-center justify-center ${bgColor}`}>
                 <img src={imageUrl} alt={title} className="w-full h-full object-contain" />
             </div>

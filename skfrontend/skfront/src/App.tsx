@@ -1,4 +1,3 @@
-
 import Login from './components/Login'
 import Regster from './components/Register'
 import NotFound from './components/NotFound'
@@ -8,12 +7,15 @@ import Home from './components/Home'
 import ContactUs from './components/ContactUs'
 import School from './components/School'
 import UserProfile from './components/UserProfile'
-import Educator from './components/Educator'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { makeRegiserRequest } from './api'
 import MyCourses from './components/MyCourse'
 import CreateCourse from './components/CreateCourse'
 
+import { createContext, useState } from 'react'
+import EducatorRout from './components/RedirectEducator'
+import CourseDetail from './components/Course'
+import DB from './assets/DB.webp'
 
 function Logout() {
     localStorage.clear()
@@ -25,28 +27,47 @@ function RegisterAndLogout() {
     return (<Regster handleSubmit={makeRegiserRequest} />)
 }
 
+
+let CourseContext = createContext<any>(undefined)
+
 function App() {
+
+    let useCourse = useState({
+        title: "Drone Building",
+        instructor: "Dinesh Sain",
+        rating: 5,
+        numRatings: 2,
+        verified: true,
+        classes: 7,
+        price: 750,
+        image: DB,
+    }
+    )
+
     return (
 
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/contactus' element={<ContactUs />} />
-                {/* <Route path='/educator' element={<Educator />} /> */}
-                <Route path='/educator' element={<ProtectedRoutes><Educator /></ProtectedRoutes>} />
-                <Route path='/educatorForm' element={<ProtectedRoutes><EducatorForm /></ProtectedRoutes >} />
-                <Route path='/educator/createCourse' element={<ProtectedRoutes><CreateCourse /></ProtectedRoutes >} />
-                <Route path='/educator/dashboard' element={<ProtectedRoutes><MyCourses /></ProtectedRoutes >} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/logout' element={<Logout />} />
-                <Route path='/register' element={<RegisterAndLogout />} />
-                <Route path='/school' element={<School />} />
-                <Route path='/search' element={<NotFound />} />
-                <Route path='/student' element={<UserProfile />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-        </BrowserRouter>
+        <CourseContext.Provider value={useCourse} >
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/contactus' element={<ContactUs />} />
+                    <Route path='/educator' element={<EducatorRout />} />
+                    <Route path='/educator/form' element={<ProtectedRoutes><EducatorForm /></ProtectedRoutes >} />
+                    <Route path='/educator/dashboard' element={<ProtectedRoutes><MyCourses /></ProtectedRoutes >} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/logout' element={<Logout />} />
+                    <Route path='/register' element={<RegisterAndLogout />} />
+                    <Route path='/course-details' element={<CourseDetail {...useCourse[0]} />} />
+                    <Route path='/school' element={<School />} />
+                    <Route path='/search' element={<NotFound />} />
+                    <Route path='/student' element={<UserProfile />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        </CourseContext.Provider >
     )
 }
 
 export default App
+
+export { CourseContext }

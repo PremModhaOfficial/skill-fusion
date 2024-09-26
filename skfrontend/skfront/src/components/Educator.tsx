@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
 import stuTeaImg from '../assets/stuTeaImg.jpg'
 import stuTeaImg1 from '../assets/stuTeaImg1.jpg'
@@ -9,7 +9,7 @@ import teach from '../assets/Teach.gif'
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-
+import { getUserProfile } from "../api";
 
 const Educator: React.FC = () => {
     const stuTeaImage = stuTeaImg
@@ -19,6 +19,8 @@ const Educator: React.FC = () => {
     const sandClockGIf = sandClock
     const competitivePayGif = competitivePay
     let navigate = useNavigate();
+
+
 
     return (
         <div className="min-h-screen bg-sky-100 font-sans">
@@ -42,7 +44,9 @@ const Educator: React.FC = () => {
                             doing what you love!
                         </p>
                         <button
-                            onClick={() => navigate("/educatorForm")}
+                            onClick={() =>
+                                navigate("/educator/form")
+                            }
                             className="bg-red-600 text-white px-8 py-3 ms-4 rounded-full text-lg font-semibold hover:bg-red-700 transition duration-300">
                             Start Now!
                         </button>

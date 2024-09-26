@@ -18,12 +18,11 @@ const EducatorForm = () => {
     let [workProfileLink, setWorkProfileLink] = useState('');
 
     useEffect(() => {
-
         getUserProfile().then((data) => {
             setEmail(data?.email);
             if (data?.educator) {
                 console.log(data.educator);
-                navigate("/educator/dashboard")
+                // navigate("/educator/dashboard")
             }
         });
     }, [educatorName]);
