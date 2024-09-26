@@ -13,6 +13,10 @@ import LatestReleases from './components/LatestReleases'
 import School from './components/School'
 import UserProfile from './components/UserProfile'
 import Educator from './components/Educator'
+import Hackout from './components/Hackout'
+
+
+
 function Logout() {
     localStorage.clear()
     return <Navigate to="/login" />
@@ -24,21 +28,23 @@ function RegisterAndLogout() {
 }
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/logout' element={<Logout />} />
-                <Route path='/register' element={<RegisterAndLogout />} />
-                <Route path='/educatorForm' element={<EduForm1 />} />
-                <Route path='/educator' element={<Educator />} />
-                <Route path='/student' element={<UserProfile />} />
-                <Route path='/contactus' element={<ContactUs />} />
-                <Route path='/school' element={<School />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </BrowserRouter>
+        // <BrowserRouter>
+        //     <Routes>
+        //         <Route path='/' element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
+        //         <Route path='/login' element={<Login />} />
+        //         <Route path='/logout' element={<Logout />} />
+        //         <Route path='/register' element={<RegisterAndLogout />} />
+        //         <Route path='/educatorForm' element={<EduForm1 />} />
+        //         <Route path='/educator' element={<Educator />} />
+        //         <Route path='/student' element={<UserProfile />} />
+        //         <Route path='/contactus' element={<ContactUs />} />
+        //         <Route path='/school' element={<School />} />
+        //         <Route path='*' element={<NotFound />} />
+        //     </Routes>
+        //     <Footer />
+        // </BrowserRouter>
+
+        <><Hackout /></>
         
     )
 }
