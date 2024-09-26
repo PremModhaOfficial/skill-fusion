@@ -36,13 +36,13 @@ const Teachers: React.FC = () => {
     }, []);
 
     return (
-        <div className="flex flex-col items-center justify-center p-4">
+        <div className="bg-gray-100 flex flex-col items-center justify-center p-4">
             <h2 className="text-3xl font-bold mb-2">Top Educators</h2>
             <div className="h-2 w-12 bg-red-700 mb-6 rounded-md"></div>
             <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
                 {visibleTeachers.map((teacher) => (
-                    <div key={teacher.id} className="flex flex-col items-center w-40">
-                        <div className="w-40 h-40 rounded-full overflow-hidden border-black border-2 bg-gray-200 mb-2">
+                    <div key={teacher.id} className="flex flex-col items-center w-60">
+                        <div className="w-60 h-60 rounded-full overflow-hidden border-black border-2 bg-gray-200 mb-2">
                             <img
                                 src={teacher.image}
                                 alt={teacher.name}

@@ -54,7 +54,7 @@ const TrendingNow = () => {
     ];
 
     return (
-        <div className="bg-gray-100 py-12 px-4 sm:px-8 lg:px-20">
+        <div className=" py-12 px-4 sm:px-8 lg:px-20">
             <h2 className="text-3xl font-bold mb-2">Trending Now</h2>
             <div className="h-2 w-12 bg-red-700 mb-6 rounded-md"></div>
 
