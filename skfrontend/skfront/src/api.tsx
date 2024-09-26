@@ -34,7 +34,19 @@ let makeRegiserRequest = async ({ username, password, email }: registerRequestFi
 
 }
 
+const getUserProfile = async () => {
 
+    try {
+        const response = await api.get('/api/whoami/')
+
+        const userData = await response.data
+        console.log(userData?.username);
+        return userData
+        // Use userData to populate your profile form
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 export default api
 
-export { makeRegiserRequest }
+export { makeRegiserRequest, getUserProfile }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
+import { all } from "axios";
 
 function Form({ route, method }: { route: string, method: string }) {
     const [username, setUsername] = useState("");
@@ -26,7 +27,8 @@ function Form({ route, method }: { route: string, method: string }) {
                 navigate("/login")
             }
         } catch (error) {
-            alert(error)
+            console.log(error)
+            alert("username or password is incorrect")
         } finally {
             setLoading(false)
         }
@@ -44,13 +46,13 @@ function Form({ route, method }: { route: string, method: string }) {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
             />
-            <input
+            {method === 'login' ? "" : <input
                 className="form-input block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700 md:w-3/4 lg:w-1/2"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email"
-            />
+            />}
             <input
                 className="form-input block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 text-gray-700 md:w-3/4 lg:w-1/2"
                 type="password"

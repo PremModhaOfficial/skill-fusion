@@ -2,7 +2,7 @@
 import Login from './components/Login'
 import Regster from './components/Register'
 import NotFound from './components/NotFound'
-import EduForm1 from './components/EduForm1'
+import EducatorForm from './components/EduForm1'
 
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 import Home from './components/Home'
@@ -29,8 +29,8 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/contactus' element={<ContactUs />} />
                 {/* <Route path='/educator' element={<Educator />} /> */}
-                <Route path='/educator' element={<ProtectedRoutes><Educator /> </ProtectedRoutes>} />
-                <Route path='/educatorForm' element={<EduForm1 />} />
+                <Route path='/educator' element={<ProtectedRoutes><Educator /></ProtectedRoutes>} />
+                <Route path='/educatorForm' element={<EducatorForm />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/register' element={<RegisterAndLogout />} />
@@ -40,7 +40,7 @@ function App() {
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>
-        
+
     )
 }
 

@@ -24,6 +24,8 @@ class UserSerializer(serializers.ModelSerializer):
         )
         try:
             validate_password(validated_data["password"], user)
+            user.set_password(validated_data["password"])
+            user.save()
         except ValidationError as e:
             user.delete()
             raise serializers.ValidationError({"password": e})
@@ -42,7 +44,7 @@ class EducatorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Educator
-        fields = ["id", "user", "profile_pic", "created_at", "updated_at"]
+        fields = ["id", "user", "profile_pic"]
         extra_kwargs = {"password": {"write_only": True}}
 
 

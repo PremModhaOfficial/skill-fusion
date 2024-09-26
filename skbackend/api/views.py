@@ -7,6 +7,8 @@ from rest_framework.generics import (
     ListCreateAPIView,
 )
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Course, Educator, Student, User
 from .serializers import (
@@ -35,6 +37,14 @@ class CreateEducatorView(CreateAPIView):
     queryset = Educator.objects.all()
     serializer_class = EducatorSerializer
     permission_classes = [IsAuthenticated]
+
+
+class Whoami(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
 
 
 class CreateUserView(CreateAPIView):

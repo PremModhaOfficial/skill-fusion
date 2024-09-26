@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
+import api, { getUserProfile } from '../api';
 
-const EduForm1 = () => {
+const EducatorForm = () => {
     let [aadhar, setAadhar] = useState('');
     let [additionalDocs, setAdditionalDocs] = useState('');
+    let [email, setEmail] = useState('');
     let [countryCode, setCountryCode] = useState('');
     let [dateOfBirth, setDateOfBirth] = useState('');
     let [educatorName, setEducatorName] = useState('');
-    let [email, setEmail] = useState('');
     let [location, setLocation] = useState('');
     let [mobile, setMobile] = useState('');
     let [resume, setResume] = useState('');
@@ -15,8 +16,10 @@ const EduForm1 = () => {
     let [workProfileLink, setWorkProfileLink] = useState('');
 
     useEffect(() => {
-        // TODO : dynamicaly get the email
-    }, []);
+        getUserProfile().then((data) => {
+            setEmail(data?.email);
+        });
+    }, [location]);
 
     return (
         <div>
@@ -38,16 +41,15 @@ const EduForm1 = () => {
                                     onChange={e => setEducatorName(e.target.value)}
                                     type="text" id="educatorName" name="educatorName" className="mt-1 block w-full h-12 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg" placeholder="name" />
                             </div>
-                            <div>
+                            <div>email
                                 <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">Email</label>
                                 <input
-                                    onChange={e => setEmail(e.target.value)}
                                     type="email"
                                     id="email"
                                     name="email"
                                     className="mt-1 block w-full h-12 rounded-md border-gray-300 bg-gray-100 text-gray-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-lg cursor-not-allowed"
-                                    placeholder="kagoka6377@exweme.com"
-                                    value="kagoka6377@exweme.com"
+                                    placeholder={email}
+                                    value={email}
                                     readOnly
                                 />
                                 <p className="mt-1 text-sm text-gray-500">Email cannot be edited</p>
@@ -141,4 +143,4 @@ const EduForm1 = () => {
     );
 };
 
-export default EduForm1;
+export default EducatorForm;
