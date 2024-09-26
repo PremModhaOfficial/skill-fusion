@@ -54,11 +54,11 @@ const TrendingNow = () => {
     ];
 
     return (
-        <div className=" py-12 px-4 sm:px-8 lg:px-20">
+        <div className="bg-white py-12 px-4 sm:px-8 lg:px-20">
             <h2 className="text-3xl font-bold mb-2">Trending Now</h2>
             <div className="h-2 w-12 bg-red-700 mb-6 rounded-md"></div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 cursor-pointer">
                 {courses.map((course) => (
                     <CourseCard key={course.title} {...course} />
                 ))}

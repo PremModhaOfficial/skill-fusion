@@ -3,7 +3,6 @@ import Login from './components/Login'
 import Regster from './components/Register'
 import NotFound from './components/NotFound'
 import EducatorForm from './components/EduForm1'
-
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 import Home from './components/Home'
 import ContactUs from './components/ContactUs'
@@ -14,6 +13,8 @@ import ProtectedRoutes from './components/ProtectedRoutes'
 import { makeRegiserRequest } from './api'
 import MyCourses from './components/MyCourse'
 import CreateCourse from './components/CreateCourse'
+
+
 function Logout() {
     localStorage.clear()
     return <Navigate to="/" />

@@ -55,7 +55,6 @@ const CourseCard = ({ title, instructor, rating, numRatings, verified, classes, 
             </div>
         </div>
     )
-}
-    ;
+};
 
 export default CourseCard

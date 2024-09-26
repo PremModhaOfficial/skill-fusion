@@ -8,7 +8,6 @@
 //
 //     )
 // }
-//
 import React, { useState } from 'react';
 import { registerRequestFields } from '../types/requestTypes';
 import { useNavigate } from 'react-router-dom';

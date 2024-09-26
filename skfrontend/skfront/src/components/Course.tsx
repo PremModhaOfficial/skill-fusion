@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Users, User, Star, Footprints, UserPlus, Calendar, Clock, CheckCircle } from 'lucide-react';
+import Modal from 'react-modal'
+import { Users, User, Star, Footprints, UserPlus, Calendar, Clock, CheckCircle, Globe, Video, Laptop, WholeWord } from 'lucide-react';
 import img1 from "../assets/ENFL.webp";
 import img2 from "../assets/ENFL2.webp";
 import img3 from "../assets/ENFL3.png";
@@ -11,13 +12,41 @@ const images = [img1, img2, img3, img4];
 const Course: React.FC = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isTextExpanded, setIsTextExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState({
+    cardType: '',
+    cardHolderName: '',
+    cardNumber: '',
+    cvv: '',
+    expiryMonth: '',
+    expiryYear: ''
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setPaymentDetails(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleBookClassClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = () => {
+    // Here you can handle the form submission and validate the input
+    console.log(paymentDetails);
+    closeModal();
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); 
   }, []);
 
   const handleReadMoreToggle = () => {
@@ -40,7 +69,7 @@ const Course: React.FC = () => {
                 <div className="flex items-center">
                   <span className="text-xl font-bold mr-2">₹ 550</span>
                   <span className="text-base font-bold text-gray-600 mr-4">/class</span>
-                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700">Book Inquiry</button>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700" onClick={handleBookClassClick}>Book Inquiry</button>
                 </div>
               </div>
               <div className="flex items-center justify-between">
@@ -51,7 +80,7 @@ const Course: React.FC = () => {
                 <div className="flex items-center">
                   <span className="text-xl font-bold mr-2">₹ 1,000</span>
                   <span className="text-base font-bold text-gray-600 mr-4">/class</span>
-                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700">Book Inquiry</button>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700" onClick={handleBookClassClick}>Book Inquiry</button>
                 </div>
               </div>
               <div className="flex items-center justify-between">
@@ -61,14 +90,14 @@ const Course: React.FC = () => {
                 </div>
                 <div className="flex items-center">
                   <span className="text-xl font-bold mr-4">FREE</span>
-                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700">Book Inquiry</button>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded-lg text-lg hover:bg-red-700" onClick={handleBookClassClick}>Book Session</button>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Right side: Image carousel */}
-          <div className="w-1/2 relative">
+          <div className="w-1/2 relative ms-52">
             <img
               src={images[currentImage]}
               alt={`Course image ${currentImage + 1}`}
@@ -279,6 +308,158 @@ const Course: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <div className="mx-auto px-4 py-8 max-w-4xl bg-gray-100 rounded-lg mb-4">
+        <h3 className="text-3xl font-bold mb-4">Requirements</h3>
+        <div className="flex justify-center space-x-16 mb-4">
+          <div className="flex items-center">
+            <WholeWord size={30} className="mr-2" />
+            <div>
+              <div className="font-semibold text-xl">English</div>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Laptop size={30} className="mr-2" />
+            <div>
+              <div className="font-semibold text-xl">Laptop</div>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Video size={30} className="mr-2" />
+            <div>
+              <div className="font-semibold text-xl">Zoom</div>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Globe size={30} className="mr-2" />
+            <div>
+              <div className="font-semibold text-xl">Internet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Payment Modal"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <h2 className="text-2xl font-bold mb-4">Enter Payment Details</h2>
+        <form>
+          <div className="mb-4">
+            <label className="block text-gray-700">Card Type:</label>
+            <div className="flex space-x-4">
+              <label>
+                <input
+                  type="radio"
+                  name="cardType"
+                  value="credit"
+                  onChange={handleInputChange}
+                />
+                Credit
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="cardType"
+                  value="debit"
+                  onChange={handleInputChange}
+                />
+                Debit
+              </label>
+            </div>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Card Holder Name:</label>
+            <input
+              type="text"
+              name="cardHolderName"
+              value={paymentDetails.cardHolderName}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Card Number (12 digits):</label>
+            <input
+              type="text"
+              name="cardNumber"
+              value={paymentDetails.cardNumber}
+              maxLength={12}
+              pattern="\d{12}"
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">CVV (3 digits):</label>
+            <input
+              type="text"
+              name="cvv"
+              value={paymentDetails.cvv}
+              maxLength={3}
+              pattern="\d{3}"
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Expiry Month:</label>
+            <select
+              name="expiryMonth"
+              value={paymentDetails.expiryMonth}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            >
+              <option value="">Select Month</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Expiry Year:</label>
+            <select
+              name="expiryYear"
+              value={paymentDetails.expiryYear}
+              onChange={handleInputChange}
+              className="w-full p-2 border rounded"
+              required
+            >
+              <option value="">Select Year</option>
+              <option value="2024">2024</option>
+              <option value="2025">2025</option>
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+              <option value="2029">2029</option>
+              <option value="2030">2030</option>
+            </select>
+          </div>
+          <div className="flex justify-end space-x-4">
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-300 text-black rounded-lg"
+              onClick={closeModal}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 };
