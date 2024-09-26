@@ -8,6 +8,7 @@ import ExploreSection from './ExploreSection';
 import SkillCatalog from './SkillCategory';
 import Teachers from './Teachers';
 import LatestReleases from './LatestReleases';
+import Footer from './Footer';
 
 
 function Home() {
@@ -36,6 +37,7 @@ function Home() {
             <Teachers />
             <SkillCatalog />
             <LatestReleases />
+            <Footer />
         </>
     );
 }

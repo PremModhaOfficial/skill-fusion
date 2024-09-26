@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import ValidationError, validate_password
 from rest_framework import serializers
 
 from .models import Course, Educator, Student
@@ -18,13 +19,17 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
-        user = User(**validated_data)
-        if self.is_valid():
-            user.set_password(validated_data["password"])  # Hash the password
+        user = User.objects.create_user(
+            username=validated_data["username"], email=validated_data["email"]
+        )
+        try:
+            validate_password(validated_data["password"], user)
+            user.set_password(validated_data["password"])
             user.save()
-            return user
-        else:
-            return self.errors
+        except ValidationError as e:
+            user.delete()
+            raise serializers.ValidationError({"password": e})
+        return user
 
 
 # class EducatorSerializer(serializers.ModelSerializer):
@@ -39,7 +44,7 @@ class EducatorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Educator
-        fields = ["id", "user", "profile_pic", "created_at", "updated_at"]
+        fields = ["id", "user", "profile_pic"]
         extra_kwargs = {"password": {"write_only": True}}
 
 

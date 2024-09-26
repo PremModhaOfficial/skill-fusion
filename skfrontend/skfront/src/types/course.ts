@@ -12,4 +12,6 @@ type Course = {
     bgColor: string
 }
 
+
+
 export default Course

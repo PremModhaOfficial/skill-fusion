@@ -20,6 +20,16 @@ class Student(models.Model):
 class Educator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
+    name = models.CharField(max_length=255)
+    phonenumber = models.CharField(max_length=13)
+    date_of_birth = models.DateField(
+        null=True,
+        blank=True,
+    )
+    location = models.CharField(max_length=255)
+    social_links = models.TextField()
+    experiance = models.FloatField(choices=[(i + 0.5, i + 0.5) for i in range(10)])
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -29,18 +39,15 @@ class Educator(models.Model):
         return f"Educator: {self.user}"
 
 
-"""
-    {
-        title: "Drone Building",
-        instructor: "Dinesh Sain",
-        rating: 5,
-        numRatings: 2,
-        verified: true,
-        classes: 7,
-        price: 750,
-        image: DB,
-    }
-"""
+""" title: "Drone Building",
+    instructor: "Dinesh Sain",
+    rating: 5,
+    numRatings: 2,
+    verified: true,
+    classes: 7,
+    price: 750,
+    image: DB,
+ """
 
 
 class Course(models.Model):
