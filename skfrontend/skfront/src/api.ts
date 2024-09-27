@@ -1,6 +1,6 @@
 import axios from "axios"
 import { ACCESS_TOKEN } from "./constants"
-import { EducatorFormFields, registerRequestFields } from "./types/requestTypes"
+import { EducatorFormFields, registerRequestFields, studentFields } from "./types/requestTypes"
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -20,6 +20,7 @@ api.interceptors.request.use(
     }
 )
 
+
 let makeProfileRequest = async (fields: EducatorFormFields) => {
     try {
         let response = await api.post('/api/educator/', { ...fields })
@@ -36,29 +37,48 @@ let makeProfileRequest = async (fields: EducatorFormFields) => {
 }
 
 
+let makeStudentRegiserRequest = async (student: studentFields) => {
+    try {
+        let response = await api.post('/api/student/register', { ...student })
+        console.log(response.data)
+
+        return response
+    } catch (error: any) {
+        console.error(error?.response?.data)
+        return error?.response
+    }
+}
 let makeRegiserRequest = async ({ username, password, email }: registerRequestFields) => {
     try {
         let response = await api.post('/api/register/', { username, email, password })
         // console.log(response.data)
-
         return response
     } catch (error: any) {
         // console.error(error?.response?.data)
         return error?.response
     }
+}
+
+// const RedirectIfAlreadyEducator = (toPath: string) => {
+//     let responce = getUserProfile()
+//     try {
+//         return responce.then((js: any) => { return (js.educator !== undefined ? true : false) })
+//     } catch (error) {
+//         console.log(JSON.stringify(error))
+//         return false
+//     }
+// }
+
+type PaymentDetails = { cardType: string, cardHolderName: string, cardNumber: string, cvv: string, expiryMonth: string, expiryYear: string }
+
+const makePayment = async (pD: PaymentDetails) => {
+    api.post('/api/payment/', { ...pD })
 
 }
 
-const RedirectIfAlreadyEducator = (toPath: string) => {
-    let responce = getUserProfile()
-    try {
-        return responce.then((js: any) => { return (js.educator !== undefined ? true : false) })
-    } catch (error) {
-        console.log(JSON.stringify(error))
-        return false
-    }
+const makeStudentProgress = async (courseId: string) => {
+    api.post('/api/student/made-progress/', { courseId })
 }
-
 
 
 const getUserProfile = async () => {
@@ -67,7 +87,7 @@ const getUserProfile = async () => {
         const response = await api.get('/api/whoami/')
 
         const userData = await response.data
-        console.log(userData);
+        // console.log(userData);
         return userData
         // Use userData to populate your profile form
     } catch (error) {
@@ -77,4 +97,4 @@ const getUserProfile = async () => {
 };
 export default api
 
-export { makeRegiserRequest, getUserProfile, makeProfileRequest, RedirectIfAlreadyEducator }
+export { makeStudentProgress, makeRegiserRequest, getUserProfile, makeProfileRequest, makePayment, makeStudentRegiserRequest }

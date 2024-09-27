@@ -21,7 +21,7 @@ const EducatorForm = () => {
         getUserProfile().then((data) => {
             setEmail(data?.email);
             if (data?.educator) {
-                console.log(data.educator);
+                // c onsole.log(data.educator);
                 // navigate("/educator/dashboard")
             }
         });

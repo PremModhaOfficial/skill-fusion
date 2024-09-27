@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.generics import (
@@ -10,18 +12,65 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Course, Educator, Student, User
+from .models import Course, Educator, Student, StudentProgress, User
 from .serializers import (
     CourseSerializer,
     EducatorCreatorSerializer,
+    EducatorSerializer,
     StudentSerializer,
     UserSerializer,
 )
 from .utils import send_email_to_client
 
 
+def update_studentProgress(request, course_id):
+    if request.method == "POST":
+        student = Student.objects.get(user=request.user)
+        course = Course.objects.get(id=course_id)
+
+        student_progress = StudentProgress.objects.get(student=student, course=course)
+        if student_progress is None:
+            student_progress = StudentProgress.objects.create(
+                student=student, course=course, progress=0
+            )
+            student_progress.save()
+        else:
+            current_progress = student_progress.progress
+            new_prog = int(course.classes * current_progress / 100) + 1
+            new_prog %= course.classes
+
+            student_progress.progress = new_prog
+            student_progress.save()
+
+    return Response({"message": "Progress updated"})
+
+
+@api_view(["POST"])
+def payment(request):
+    subject = "OTP for Verification Email id"
+    if request.method == "POST":
+        student = Student.objects.get(user=request.user)
+        email = student.user.email
+        print(email, "email")
+
+        message = f"""
+            Congrats {student.name}, 
+            Your payment in skill-fusion is successful
+        """
+        from_email = settings.EMAIL_HOST_USER
+        recipient = [email]
+
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=from_email,
+            recipient_list=recipient,
+        )
+    return Response({"message": "Payment successful"})
+
+
 @api_view(["PUT"])
-def send_email(request):
+def send_email_view(request):
     pk = request.data["pk"]
     send_email_to_client(request, pk=pk)
     return render(request, template_name="index.html")
@@ -31,6 +80,23 @@ class CreateStudentView(CreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.all(user=user)
+
+    def perform_create(self, serializer):
+        serializer.save()  # The user will be set in the serializer's create method
+
+
+class EducatorListView(ListAPIView):
+    serializer_class = EducatorSerializer
+    permission_classes = [AllowAny]
+    queryset = Educator.objects.all()
+
+    def get_queryset(self):
+
+        return Educator.objects.all()
 
 
 class EducatorCreateView(CreateAPIView):

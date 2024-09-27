@@ -1,7 +1,10 @@
 import Course from "@/types/course"
+import MyModal from "./Modal";
 
 
-import { Star, Book, DollarSign, User } from 'lucide-react';
+import { Star, Book, User } from 'lucide-react';
+import { useState } from "react";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function CourseDetail(
     {
@@ -14,6 +17,8 @@ export default function CourseDetail(
         price,
         image
     }: Course) {
+
+    let [modal, setModal] = useState(false);
     return (
         <div className="max-w-4xl mx-auto p-8 bg-white rounded-xl shadow-lg">
             <div className="flex flex-col md:flex-row">
@@ -42,11 +47,12 @@ export default function CourseDetail(
                         <span>{classes} Classes</span>
                     </div>
                     <div className="flex items-center mb-6">
-                        <DollarSign className="w-5 h-5 text-gray-600 mr-2" />
                         <span className="text-2xl font-bold">₹{price}</span>
                         <span className="ml-2 text-gray-600">per class</span>
                     </div>
-                    <button className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
+                    <button
+                        onClick={() => setModal(true)}
+                        className="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700 transition duration-300">
                         Enroll Now
                     </button>
                 </div>
@@ -80,7 +86,11 @@ export default function CourseDetail(
                     ensuring students gain valuable skills applicable in real-world scenarios.
                 </p>
             </div>
+            <ProtectedRoutes>
+                <MyModal isModalOpen={modal} setIsModalOpen={setModal} />
+            </ProtectedRoutes>
         </div>
     );
 }
+
 

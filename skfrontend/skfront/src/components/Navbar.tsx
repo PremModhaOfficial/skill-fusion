@@ -4,8 +4,9 @@ import { IoSearch } from "react-icons/io5";
 
 type NavbarProps = {
     setSearch: React.Dispatch<React.SetStateAction<string>>
+    current?: string
 }
-const Navbar = ({ setSearch }: NavbarProps) => {
+const Navbar = ({ setSearch, current }: NavbarProps) => {
 
     let navigate = useNavigate();
     return (
@@ -79,13 +80,19 @@ const Navbar = ({ setSearch }: NavbarProps) => {
                         return navigate("/educator")
                     }
                     }
-                    className="px-4 py-1 bg-gray-200 text-black rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Educator</button>
+                    className="px-4 py-1 bg-gray-200 text-black rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white
+                    ">
+                    {
+                        current === "educator"
+                            ? <span> Educator </span>
+                            : <span className='animate-pulse'>Educator</span>
+                    }
+                </button>
                 <button
                     onClick={(e) => {
                         e.preventDefault()
-                        return navigate("/profile")
-                    }
-                    }
+                        return navigate("/student")
+                    }}
                     className="px-4 py-1 bg-red-600 text-white rounded-full hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">Learner</button>
             </div>
         </nav>

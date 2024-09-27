@@ -27,7 +27,7 @@ function Form({ route, method }: { route: string, method: string }) {
                 navigate("/login")
             }
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             alert("username or password is incorrect")
         } finally {
             setLoading(false)

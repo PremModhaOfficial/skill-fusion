@@ -3,13 +3,30 @@ import os
 from django.contrib.auth.models import User
 from django.db import models
 
+
+def get_image_path(instance, filename):
+    return os.path.join("course_images", str(instance.pk), filename)
+
+
 # Create your models here.
 # profile pic
 
 
+def get_student_image_path(instance, filename):
+    return os.path.join("profile_pics", "student", str(instance.pk), filename)
+
+
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
+    profile_pic = models.ImageField(
+        upload_to=get_student_image_path, blank=True, null=True
+    )
+    name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=13)
+    date_of_birth = models.CharField(max_length=10, null=True, blank=True)
+    location = models.CharField(max_length=255)
+    institute = models.CharField(max_length=255, null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -19,9 +36,15 @@ class Student(models.Model):
         return f"Student: {self.user}"
 
 
+def get_educator_image_path(instance, filename):
+    return os.path.join("profile_pics", "student", str(instance.pk), filename)
+
+
 class Educator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True)
+    profile_pic = models.ImageField(
+        upload_to=get_educator_image_path, blank=True, null=True
+    )
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=13)
     date_of_birth = models.CharField(max_length=10, null=True, blank=True)
@@ -44,10 +67,6 @@ class Educator(models.Model):
     price: 750,
     image: DB,
  """
-
-
-def get_image_path(instance, filename):
-    return os.path.join("course_images", str(instance.pk), filename)
 
 
 class Course(models.Model):
@@ -77,9 +96,9 @@ class StudentProgress(models.Model):
 
     objects = models.Manager()
 
-    def update_progress(self, progress):
-        self.progress = progress
-        self.save()
+    def update_progress(self, progress, instance):
+        instance.progress = progress
+        instance.save()
 
     def __str__(self):
         return f"Student: {self.student} - Course: {self.course}"

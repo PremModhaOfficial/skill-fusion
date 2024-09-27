@@ -1,32 +1,43 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef, ChangeEvent, useEffect } from 'react';
 import { Camera } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Footer from './Footer';
+import { getUserProfile, makeStudentRegiserRequest } from '@/api';
+import { studentFields } from '@/types/requestTypes';
 
 interface UserInfo {
-    studentName: string;
-    parentName: string;
+    name: string;
     email: string;
-    mobileNumber: string;
-    whatsappNumber: string;
-    instituteName: string;
-    city: string;
+    mobile: string;
+    institute: string;
+    location: string;
 }
 
-const UserProfile: React.FC = () => {
+
+
+const StudentProfile: React.FC = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [birthDate, setBirthDate] = useState<Date | null>(null);
     const [profilePicture, setProfilePicture] = useState<string | null>(null);
-    const [userInfo, setUserInfo] = useState<UserInfo>({
-        studentName: "Jay",
-        parentName: "Mahesh",
+    const [userInfo, setUserInfo] = useState<studentFields>({
+        name: "Jay",
         email: "pamoh29856@janfab.com",
-        mobileNumber: "7856056904",
-        whatsappNumber: "7856056904",
-        instituteName: "ODM Public School",
-        city: "Mumbai",
+        phone: "7856056904",
+        institute: "ODM Public School",
+        date_of_birth: "2000-01-01",
+        location: "Mumbai",
     });
+
+    useEffect(() => {
+
+        getUserProfile().then((data) => {
+            console.log(`whoami?: ${JSON.stringify(data)}`)
+
+            setUserInfo({ ...userInfo, name: data.username, email: data.email })
+
+        }).catch((error) => { alert(error) })
+    }, [])
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -66,6 +77,7 @@ const UserProfile: React.FC = () => {
     const handleSaveClick = () => {
         setIsEditing(false);
         console.log("Form data saved:", userInfo);
+        makeStudentRegiserRequest({ ...userInfo })
     };
 
     const inputClassName = "block w-full h-12 px-4 rounded-md text-white shadow-lg text-lg bg-transparent ";
@@ -107,25 +119,14 @@ const UserProfile: React.FC = () => {
                             <label className="block text-sm font-medium text-white mb-1">Student name<span className='text-red-500 text-lg'>*</span></label>
                             <input
                                 type="text"
-                                name="studentName"
-                                value={userInfo.studentName}
+                                name="name"
+                                value={userInfo.name}
                                 onChange={handleInputChange}
                                 className={inputClassName}
                                 disabled={!isEditing}
                             />
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-white mb-1">Parent Name<span className='text-red-500 text-lg'>*</span></label>
-                            <input
-                                type="text"
-                                name="parentName"
-                                value={userInfo.parentName}
-                                onChange={handleInputChange}
-                                className={inputClassName}
-                                disabled={!isEditing}
-                            />
-                        </div>
 
                         <div>
                             <label className="block text-sm font-medium  text-white mb-1">Email Address<span className='text-red-500 text-lg'>*</span></label>
@@ -143,31 +144,20 @@ const UserProfile: React.FC = () => {
                             <input
                                 type="tel"
                                 name="mobileNumber"
-                                value={userInfo.mobileNumber}
+                                value={userInfo.mobile}
                                 onChange={handleInputChange}
                                 className={inputClassName}
                                 disabled={!isEditing}
                             />
                         </div>
 
-                        <div>
-                            <label className="block text-sm font-medium text-white mb-1">Whatsapp Number</label>
-                            <input
-                                type="tel"
-                                name="whatsappNumber"
-                                value={userInfo.whatsappNumber}
-                                onChange={handleInputChange}
-                                className={inputClassName}
-                                disabled={!isEditing}
-                            />
-                        </div>
 
                         <div>
                             <label className="block text-sm font-medium text-white mb-1">Institute Name</label>
                             <input
                                 type="text"
                                 name="instituteName"
-                                value={userInfo.instituteName}
+                                value={userInfo.institute}
                                 onChange={handleInputChange}
                                 className={inputClassName}
                                 disabled={!isEditing}
@@ -179,7 +169,7 @@ const UserProfile: React.FC = () => {
                             <input
                                 type="text"
                                 name="city"
-                                value={userInfo.city}
+                                value={userInfo.location}
                                 onChange={handleInputChange}
                                 className={inputClassName}
                                 disabled={!isEditing}
@@ -234,4 +224,4 @@ const UserProfile: React.FC = () => {
     );
 };
 
-export default UserProfile;
+export default StudentProfile;

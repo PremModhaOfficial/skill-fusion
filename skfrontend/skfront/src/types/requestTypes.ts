@@ -4,6 +4,15 @@ type registerRequestFields = {
     email: string,
     password: string,
 }
+type studentFields = {
+    name: string,
+    phone: string,
+    email: string,
+    date_of_birth: string,
+    location: string,
+    institute: string,
+}
+
 
 type EducatorFormFields = {
     adharCard?: any,
@@ -18,4 +27,4 @@ type EducatorFormFields = {
 }
 
 
-export type { registerRequestFields, EducatorFormFields }
+export type { studentFields, registerRequestFields, EducatorFormFields }

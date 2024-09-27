@@ -1,7 +1,7 @@
 type Course = {
     id?: number,
     title: string,
-    description: string,
+    description?: string,
     instructor: string,
     rating?: number,
     numRatings: number,

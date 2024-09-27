@@ -5,6 +5,7 @@ import t3 from '../assets/T3.avif';
 import t4 from '../assets/T4.avif';
 import t5 from '../assets/T5.jpg';
 import t6 from '../assets/T6.jpg';
+import api from '@/api';
 
 interface Teacher {
     id: number;
@@ -22,7 +23,30 @@ const teachers: Teacher[] = [
 ];
 
 const Teachers: React.FC = () => {
-    const [visibleTeachers, setVisibleTeachers] = useState<Teacher[]>(teachers.slice(0, 4));
+    const [allteachers, setAllTeachers] = useState<Teacher[]>(teachers);
+    const [visibleTeachers, setVisibleTeachers] = useState<Teacher[]>(allteachers.slice(0, 4));
+
+    useEffect(() => {
+        setAllTeachers(teachers);
+
+        const getTeachers = async () => {
+            try {
+                const results = await api.get(`/api/educators`);
+                let newTeachers: Teacher[] = []
+                let gotTeacher = results.data;
+
+                for (let i = 0; i < results.data.length; i++) {
+                    newTeachers[i] = { id: i, name: gotTeacher[i].name, image: gotTeacher[i].image }
+                }
+                setAllTeachers(newTeachers);
+                console.log(results.data);
+            } catch (error) {
+                console.error('Error fetching teachers:', error);
+            }
+        }
+        getTeachers()
+
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {

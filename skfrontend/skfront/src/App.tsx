@@ -6,15 +6,14 @@ import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom'
 import Home from './components/Home'
 import ContactUs from './components/ContactUs'
 import School from './components/School'
-import UserProfile from './components/UserProfile'
+import StudentProfile from './components/UserProfile'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import { makeRegiserRequest } from './api'
 import MyCourses from './components/MyCourse'
-import CreateCourse from './components/CreateCourse'
 
 import { createContext, useState } from 'react'
 import EducatorRout from './components/RedirectEducator'
-import CourseDetail from './components/Course'
+import CourseDetail from './components/CourseBackup'
 import DB from './assets/DB.webp'
 
 function Logout() {
@@ -60,7 +59,7 @@ function App() {
                     <Route path='/course-details' element={<CourseDetail {...useCourse[0]} />} />
                     <Route path='/school' element={<School />} />
                     <Route path='/search' element={<NotFound />} />
-                    <Route path='/student' element={<UserProfile />} />
+                    <Route path='/student' element={<ProtectedRoutes><StudentProfile /></ProtectedRoutes>} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

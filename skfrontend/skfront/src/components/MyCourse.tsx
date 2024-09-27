@@ -3,6 +3,7 @@ import Course from "../types/course";
 import api from "../api";
 import CourseCard from "./CourseCard";
 import Search from "./Search";
+import Navbar from "./Navbar";
 
 
 
@@ -27,7 +28,7 @@ export default function MyCourses() {
 
     return (
         <div className="container-fluid">
-            <Search results={courseSearchResults} setSearch={setSearch} />
+            <Navbar setSearch={setSearch} current={"educator"} />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {courseSearchResults?.map((course) => <CourseCard key={course.id} {...course} />)}
 

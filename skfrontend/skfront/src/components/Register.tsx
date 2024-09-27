@@ -33,13 +33,13 @@ const Register = ({ handleSubmit }: RegisterProps) => {
                 if (res.status === 201) {
                     navigate('/login')
                 }
-                console.log(res.status)
+                // console.log(res.status)
                 let data = res.data ? res.data : ""
                 let problems =
                     (data?.username ? data.username + "\n" : "") +
                     (data?.email ? data.email + "\n" : "") +
                     (data?.password ? data.password + "\n" : "")
-                console.log(problems)
+                // console.log(problems)
                 alert(problems)
             })
         }
@@ -93,9 +93,7 @@ const Register = ({ handleSubmit }: RegisterProps) => {
                 </button>
 
                 <h3 >
-                    <center>
-                        OR
-                    </center>
+                    <center> OR </center>
                 </h3>
                 <button type="submit"
                     onClick={e => {
@@ -105,6 +103,16 @@ const Register = ({ handleSubmit }: RegisterProps) => {
                     }}
                     className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
                     Login
+                </button>
+                <center> OR </center>
+                <button type="submit"
+                    onClick={e => {
+                        e.preventDefault()
+                        navigate('/')
+
+                    }}
+                    className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
+                    Go to Home
                 </button>
             </form>
         </div>

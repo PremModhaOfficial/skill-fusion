@@ -5,13 +5,6 @@ from rest_framework import serializers
 from .models import Course, Educator, Student
 
 
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = "__all__"
-        extra_kwargs = {"password": {"write_only": True}}
-
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -30,6 +23,25 @@ class UserSerializer(serializers.ModelSerializer):
             user.delete()
             raise serializers.ValidationError({"password": e})
         return user
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = [
+            "name",
+            "phone",
+            "date_of_birth",
+            "location",
+            "institute",
+        ]
+        extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        user = self.context["request"].user
+        educator = Student.objects.create(user=user, **validated_data)
+        educator.email = user.email
+        return educator
 
 
 class EducatorCreatorSerializer(serializers.ModelSerializer):
@@ -54,6 +66,12 @@ class EducatorCreatorSerializer(serializers.ModelSerializer):
 
 class EducatorSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    profile_pic = serializers.SerializerMethodField()
+
+    def get_profile_pic(self, obj):
+        if obj.profile_pic:
+            return self.context["request"].build_absolute_uri(obj.image.url)
+        return None
 
     class Meta:
         model = Educator

@@ -1,8 +1,6 @@
 
-import { Route } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Educator from "./Educator";
-import MyCourses from "./MyCourse";
-import ProtectedRoutes from "./ProtectedRoutes";
 import { useEffect, useState } from "react";
 import { getUserProfile } from "../api";
 
@@ -11,10 +9,13 @@ export default function EducatorRout() {
         isEducator: false,
         isStudent: false
     })
+    let navigate = useNavigate();
     useEffect(() => {
         getUserProfile().then((data) => {
+            console.log(data)
             if (data?.educator) {
-                // console.log(data.educator);
+                console.log(data.educator);
+                navigate('/educator/dashboard')
                 setUser({ ...user, isEducator: true })
             } if (data?.student) {
                 // console.log(data.student);
@@ -26,9 +27,10 @@ export default function EducatorRout() {
     }, []);
 
 
-    if (user.isEducator) {
+    if (!user.isEducator) {
         return <Educator />
+    } else {
+        return <Navigate to="/educator/dashboard" />
     }
-    return <ProtectedRoutes><MyCourses /></ProtectedRoutes>
 }
 
