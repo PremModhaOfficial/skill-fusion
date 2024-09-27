@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Footer from './Footer';
-import { getUserProfile, makeProfileRequest } from '../api';
+import api, { getUserProfile, makeProfileRequest } from '../api';
 import { useNavigate } from 'react-router-dom';
 
 const EducatorForm = () => {
@@ -16,6 +16,7 @@ const EducatorForm = () => {
     let [resume, setResume] = useState('');
     let [teachingExperience, setTeachingExperience] = useState('');
     let [workProfileLink, setWorkProfileLink] = useState('');
+    let emailsent = false;
 
     useEffect(() => {
         getUserProfile().then((data) => {
@@ -23,6 +24,11 @@ const EducatorForm = () => {
             if (data?.educator) {
                 // c onsole.log(data.educator);
                 navigate("/educator/dashboard")
+                if (!emailsent) {
+                    emailsent = true;
+                    api.post('/api/email-educator/')
+                }
+
             }
         });
     }, [educatorName]);

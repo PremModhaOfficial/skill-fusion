@@ -47,6 +47,13 @@ import Form from './Form';
 //     );
 // };
 //
+import Modal from 'react-modal';
 export default function Login() {
-    return <Form route="/api/token/" method="login" />
+    return <Modal
+        isOpen={true}
+        contentLabel="Payment Modal"
+        className="modal-content z-40 mx-auto my-12 w-96 p-6 bg-white rounded-lg shadow-lg"
+    >
+        <Form route="/api/token/" method="login" />
+    </Modal>
 }

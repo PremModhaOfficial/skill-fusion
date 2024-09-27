@@ -11,6 +11,7 @@
 import React, { useState } from 'react';
 import { registerRequestFields } from '../types/requestTypes';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
 
 
 type RegisterProps = {
@@ -47,74 +48,80 @@ const Register = ({ handleSubmit }: RegisterProps) => {
 
     return (
         <div className='container-fluid m-2'>
-            <form onSubmit={onSubmit} className="flex flex-col space-y-4">
-                <h1 className="text-2xl font-bold text-center">Register</h1>
+            <Modal
+                isOpen={true}
+                contentLabel="Payment Modal"
+                className="modal-content z-40 mx-auto my-12 w-96 p-6 bg-white rounded-lg shadow-lg"
+            >
+                <form onSubmit={onSubmit} className="flex flex-col space-y-4">
+                    <h1 className="text-2xl font-bold text-center">Register</h1>
 
-                <div className="flex flex-col">
-                    <label htmlFor="username" className="text-gray-500">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                        placeholder="Enter your username"
-                        required
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <label htmlFor="email" className="text-gray-500">email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        placeholder="Enter your username"
-                        required
-                    />
-                </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="username" className="text-gray-500">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                            placeholder="Enter your username"
+                            required
+                        />
+                    </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="email" className="text-gray-500">email</label>
+                        <input
+                            type="text"
+                            id="email"
+                            className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            placeholder="Enter your username"
+                            required
+                        />
+                    </div>
 
-                <div className="flex flex-col">
-                    <label htmlFor="password" className="text-gray-500">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        placeholder="Enter your password"
-                        required
-                    />
-                </div>
+                    <div className="flex flex-col">
+                        <label htmlFor="password" className="text-gray-500">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="border rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            placeholder="Enter your password"
+                            required
+                        />
+                    </div>
 
-                <button type="submit" className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
-                    Submit
-                </button>
+                    <button type="submit" className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
+                        Submit
+                    </button>
 
-                <h3 >
+                    <h3 >
+                        <center> OR </center>
+                    </h3>
+                    <button type="submit"
+                        onClick={e => {
+                            e.preventDefault()
+                            navigate('/login')
+
+                        }}
+                        className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
+                        Login
+                    </button>
                     <center> OR </center>
-                </h3>
-                <button type="submit"
-                    onClick={e => {
-                        e.preventDefault()
-                        navigate('/login')
+                    <button type="submit"
+                        onClick={e => {
+                            e.preventDefault()
+                            navigate('/')
 
-                    }}
-                    className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
-                    Login
-                </button>
-                <center> OR </center>
-                <button type="submit"
-                    onClick={e => {
-                        e.preventDefault()
-                        navigate('/')
-
-                    }}
-                    className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
-                    Go to Home
-                </button>
-            </form>
+                        }}
+                        className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md hover:bg-blue-700">
+                        Go to Home
+                    </button>
+                </form>
+            </Modal>
         </div>
     );
 };
