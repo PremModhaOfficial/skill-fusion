@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import myImage from '../assets/SkillFusion.png';
 import { IoSearch } from "react-icons/io5";
 

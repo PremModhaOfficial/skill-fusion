@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Course from "../types/course";
 import api from "../api";
 import CourseCard from "./CourseCard";
-import Search from "./Search";
 import Navbar from "./Navbar";
 
 

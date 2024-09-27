@@ -29,11 +29,11 @@ type CoursCardProps = {
     bgColor?: string,
 } | Course
 
-const CourseCard = ({ title, instructor, rating, numRatings, verified, classes, price, date, image }: CoursCardProps) => {
+const CourseCard = ({ title, instructor, rating, numRatings, verified, classes, price, date, image }: CoursCardProps | any) => {
     let bgColor = "bg-gray-200";
     let imageUrl = image;
 
-    let [course, setCourse] = useContext(CourseContext)
+    let [_, setCourse] = useContext(CourseContext)
     let navigate = useNavigate()
 
     let handelClick = () => {

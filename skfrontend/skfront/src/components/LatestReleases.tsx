@@ -4,39 +4,6 @@ import PAPERCRAFT from '../assets/PAPERCRAFT.webp'
 import ZERODHA from '../assets/ZERODHA.webp'
 import CourseCard from './CourseCard';
 
-const VerifiedIcon = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-4 h-4 text-green-500"
-    >
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-    </svg>
-);
-
-// const CourseCard = ({ title, verified = true, image }: any) => (
-//     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 p-4 sm:p-6">
-//         <div className="h-40 flex items-center justify-center bg-white">
-//             <img src={image} alt={title} className="w-full h-full object-contain rounded-sm" />
-//         </div>
-//         <div className="p-4">
-//             <h3 className="font-bold text-lg sm:text-xl mb-1">{title}</h3>
-//         </div>
-//         {verified && (
-//             <div className="flex items-center text-sm text-gray-600 mb-2">
-//                 <VerifiedIcon />
-//                 <span className="ml-1">Verified</span>
-//             </div>
-//         )}
-//     </div>
-// );
-
 const LatestReleases = () => {
     const courses = [
         {

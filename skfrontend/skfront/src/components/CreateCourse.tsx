@@ -17,7 +17,7 @@ function InputField({ field, type }: { field: string, type: string }) {
 }
 
 export default function CreateCourse() {
-    let [course, setCourse] = useState<Course>();
+    let [course, setCourse] = useState<Course | any>();
 
     let fields = [
         ["title", "text"],

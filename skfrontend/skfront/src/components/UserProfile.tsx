@@ -8,14 +8,6 @@ import { studentFields } from '@/types/requestTypes';
 import Navbar from './Navbar';
 import Course from '@/types/course';
 
-interface UserInfo {
-    name: string;
-    email: string;
-    mobile: string;
-    institute: string;
-    location: string;
-    profile_pic?: any;
-}
 
 
 
@@ -86,7 +78,7 @@ const StudentProfile: React.FC = () => {
     const inputClassName = "block w-full h-12 px-4 rounded-md text-white shadow-lg text-lg bg-transparent ";
 
     let [search, setSearch] = useState('');
-    let [courseSearchResults, setCourseSearchResults] = useState<Course[]>([]);
+    let [_, setCourseSearchResults] = useState<Course[]>([]);
 
     useEffect(() => {
         const fetchSearchResults = async () => {
@@ -166,7 +158,7 @@ const StudentProfile: React.FC = () => {
                                 <input
                                     type="tel"
                                     name="mobileNumber"
-                                    value={userInfo.mobile}
+                                    value={userInfo?.phone}
                                     onChange={handleInputChange}
                                     className={inputClassName}
                                     disabled={!isEditing}

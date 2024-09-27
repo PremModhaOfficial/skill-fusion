@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                             <ul>
                                 <li><a
                                     // href='#'
-                                    onClick={(e) => {
+                                    onClick={() => {
                                         navigate('/')
                                     }}
                                     className=" transition-colors"><i className="fas fa-circle-info mr-2"></i>Explore All Class</a></li>

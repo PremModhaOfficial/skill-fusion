@@ -1,7 +1,4 @@
-import React from 'react';
 import '../index.css';
-import Gif01 from '../assets/GIF01.gif';
-import { Link } from 'react-router-dom';
 import Form from './Form';
 
 // const Login: React.FC = () => {
