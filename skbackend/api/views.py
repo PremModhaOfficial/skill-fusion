@@ -46,6 +46,30 @@ def update_studentProgress(request, course_id):
 
 
 @api_view(["POST"])
+def congrats(request):
+    subject = "OTP for Verification Email id"
+    if request.method == "POST":
+        educator = Educator.objects.get(user=request.user)
+        email = educator.user.email
+        print(email, "email")
+
+        message = f"""
+            Congrats {educator.name},
+            Your are now a part of skill-fusion as an educator
+        """
+        from_email = settings.EMAIL_HOST_USER
+        recipient = [email]
+
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=from_email,
+            recipient_list=recipient,
+        )
+    return Response({"message": "Payment successful"})
+
+
+@api_view(["POST"])
 def payment(request):
     subject = "OTP for Verification Email id"
     if request.method == "POST":
@@ -141,10 +165,14 @@ class CreateUserView(CreateAPIView):
 class CourseListCreate(ListCreateAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
+    queryset = Course.objects.all()
 
     def get_queryset(self):
-        educator = Educator.objects.get(user=self.request.user)
-        return Course.objects.all().filter(educator=educator)
+        queryset = super().get_queryset()
+        title = self.request.query_params.get("title", None)
+        if title is not None:
+            queryset = queryset.filter(title__icontains=title)
+        return queryset
 
     def perform_create(self, serializer):
         if serializer.is_valid():

@@ -11,6 +11,7 @@ type studentFields = {
     date_of_birth: string,
     location: string,
     institute: string,
+    profile_pic?: any;
 }
 
 

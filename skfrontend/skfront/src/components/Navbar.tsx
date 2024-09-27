@@ -13,11 +13,14 @@ const Navbar = ({ setSearch, current }: NavbarProps) => {
         <nav id='#top' className="bg-white flex flex-col md:flex-row items-center justify-between px-4 py-2 sticky top-0 z-10">
 
             {/* Logo, Categories and Search Section */}
-            <div className="flex items-center space-x-6">
+            <div
+                className="flex items-center space-x-6">
 
                 {/* Logo Section */}
                 <div className="flex-shrink-0 flex items-center px-5">
-                    <img src={myImage} alt="SkillFusion Logo" className="h-11 w-20" />
+                    <img src={myImage} alt="SkillFusion Logo"
+                        onClick={() => navigate('/')}
+                        className="h-11 w-20" />
                 </div>
 
                 {/* Categories dropdown */}
@@ -45,7 +48,6 @@ const Navbar = ({ setSearch, current }: NavbarProps) => {
                 <form className="w-[180px]"
                     onSubmit={e => {
                         e.preventDefault()
-                        navigate("/search")
                     }}>
                     <div className="relative flex items-center border border-gray-950 rounded-full px-2 py-1 h-8 focus-within:border-white focus-within:shadow-md focus-within:shadow-gray-500">
                         <input

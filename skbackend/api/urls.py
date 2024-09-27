@@ -10,13 +10,14 @@ from .views import (
     EducatorCreateView,
     EducatorListView,
     Whoami,
+    congrats,
     payment,
     update_studentProgress,
 )
 
 urlpatterns = [
     path("auth", include("rest_framework.urls")),
-    # path("email/", send_email, name="send_email"),
+    path("email-educator/", congrats, name="send_email"),
     path("payment/", payment, name="payment"),
     path("student/register", CreateStudentView.as_view(), name="student_register"),
     path(

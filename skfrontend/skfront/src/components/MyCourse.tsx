@@ -15,7 +15,8 @@ export default function MyCourses() {
     useEffect(() => {
         const fetchSearchResults = async () => {
             try {
-                const results = await api.get(`/api/mycourse`,);
+                // const results = await api.get(`/api/mycourse`,);
+                const results = await api.get(`/api/mycourse`, { params: { title: search } });
                 console.log(results.data);
                 setCourseSearchResults(results.data);
             } catch (error) {
@@ -26,9 +27,10 @@ export default function MyCourses() {
         fetchSearchResults();
     }, [search]);
 
+
     return (
-        <div className="container-fluid">
-            <Navbar setSearch={setSearch} current={"educator"} />
+        <div className="container-fuid">
+            <Navbar setSearch={setSearch} current='student' />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {courseSearchResults?.map((course) => <CourseCard key={course.id} {...course} />)}
 

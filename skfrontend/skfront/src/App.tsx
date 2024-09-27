@@ -58,7 +58,6 @@ function App() {
                     <Route path='/register' element={<RegisterAndLogout />} />
                     <Route path='/course-details' element={<CourseDetail {...useCourse[0]} />} />
                     <Route path='/school' element={<School />} />
-                    <Route path='/search' element={<NotFound />} />
                     <Route path='/student' element={<ProtectedRoutes><StudentProfile /></ProtectedRoutes>} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>

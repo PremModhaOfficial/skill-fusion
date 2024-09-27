@@ -22,7 +22,7 @@ const EducatorForm = () => {
             setEmail(data?.email);
             if (data?.educator) {
                 // c onsole.log(data.educator);
-                // navigate("/educator/dashboard")
+                navigate("/educator/dashboard")
             }
         });
     }, [educatorName]);
@@ -162,7 +162,7 @@ const EducatorForm = () => {
                                     <option value="7.5">7-8</option>
                                     <option value="8.5">8-9</option>
                                     <option value="9.5">9-10</option>
-                                    <option value="10">10+</option>
+                                    <option value="10.5">10+</option>
                                 </select>
                             </div>
                         </div>
